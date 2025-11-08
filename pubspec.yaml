@@ -15,6 +15,8 @@ dependencies:
   gap:
   sizer:
   flutter_svg:
+  carousel_slider:
+  intl:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -37,7 +39,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images
+    - assets/images/
 
 flutter_gen:
   output: lib/gen/
