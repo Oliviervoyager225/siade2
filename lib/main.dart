@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:siade2/src/features/home/pages/home_page.dart';
+import 'package:siade2/src/features/home/pages/app_layout.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Sizer(
         builder: (context,_,_) {
-          return HomePage();
+          return AppLayout();
         },
       ),
     );

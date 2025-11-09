@@ -52,6 +52,10 @@ class $AssetsImagesGen {
   AssetGenImage get carouselBottom2 =>
       const AssetGenImage('assets/images/carousel_bottom_2.jpg');
 
+  /// File path: assets/images/conversation.png
+  AssetGenImage get conversation =>
+      const AssetGenImage('assets/images/conversation.png');
+
   /// File path: assets/images/exposant.jpg
   AssetGenImage get exposant =>
       const AssetGenImage('assets/images/exposant.jpg');
@@ -125,6 +129,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/story_3.jpg
   AssetGenImage get story3 => const AssetGenImage('assets/images/story_3.jpg');
 
+  /// File path: assets/images/story_4.jpg
+  AssetGenImage get story4 => const AssetGenImage('assets/images/story_4.jpg');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     add,
@@ -137,6 +144,7 @@ class $AssetsImagesGen {
     carousel5,
     carouselBottom1,
     carouselBottom2,
+    conversation,
     exposant,
     feed,
     gallery,
@@ -158,6 +166,7 @@ class $AssetsImagesGen {
     story1,
     story2,
     story3,
+    story4,
   ];
 }
 

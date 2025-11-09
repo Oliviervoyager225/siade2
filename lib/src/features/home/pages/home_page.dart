@@ -16,48 +16,40 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // appBar: AppBar(toolbarHeight: 1),
-        body: SingleChildScrollView(
-          child: Column(
-            spacing: 20.0,
-            children: [
-              Gap(15),
-              Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SingleChildScrollView(
+      child: Column(
+        spacing: 20.0,
+        children: [
+          Gap(15),
+          Padding(
+            padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Assets.images.logo.image(height: 20),
+                Row(
                   children: [
-                    Assets.images.logo.image(height: 20),
-                    Row(
-                      children: [
-                        Assets.images.language.image(width: 18, height: 18),
-                        PopupMenuButton(
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          iconSize: 20,
-                          iconColor: Colors.white70,
-                          itemBuilder: (context) => languages.map((item) {
-                            return PopupMenuItem(
-                              value: item,
-                              child: Text(item),
-                            );
-                          }).toList(),
-                        ),
-                      ],
+                    Assets.images.language.image(width: 18, height: 18),
+                    PopupMenuButton(
+                      icon: Icon(Icons.keyboard_arrow_down),
+                      iconSize: 20,
+                      iconColor: Colors.white70,
+                      itemBuilder: (context) => languages.map((item) {
+                        return PopupMenuItem(value: item, child: Text(item));
+                      }).toList(),
                     ),
                   ],
                 ),
-              ),
-              CarouselImages(),
-              Speakers(),
-              Exponents(),
-              Programs(),
-              News(),
-              Feed(posts: posts),
-            ],
+              ],
+            ),
           ),
-        ),
+          CarouselImages(),
+          Speakers(),
+          Exponents(),
+          Programs(),
+          News(),
+          Feed(posts: posts),
+        ],
       ),
     );
   }
