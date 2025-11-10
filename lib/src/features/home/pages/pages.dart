@@ -1,2 +1,8 @@
 export 'app_layout.dart';
 export 'home_page.dart';
+export 'alert_page.dart';
+export 'profile_page.dart';
+export 'menu_page.dart';
+export 'chat_page.dart';
+export 'program_page.dart';
+export 'profile_infos_page.dart';

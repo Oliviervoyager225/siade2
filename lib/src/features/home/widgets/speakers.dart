@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:siade2/src/commons/data/models.dart';
+import 'package:siade2/src/features/home/widgets/widgets.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,25 +11,6 @@ class Speakers extends StatefulWidget {
 }
 
 class _SpeakersState extends State<Speakers> {
-
-  final List<Speaker> speakers = [
-    Speaker(
-      imageUrl: 'assets/images/speaker_1.jpg',
-      name: 'Amelie Lens',
-      job: 'CEO SaH',
-    ),
-    Speaker(
-      imageUrl: 'assets/images/speaker_2.png',
-      name: 'Amelie Lens',
-      job: 'CEO SaH',
-    ),
-    Speaker(
-      imageUrl: 'assets/images/speaker_3.jpg',
-      name: 'Amelie Lens',
-      job: 'CEO SaH',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,11 +28,18 @@ class _SpeakersState extends State<Speakers> {
                   fontSize: 16.sp,
                 ),
               ),
-              InkWell(
-                onTap: () {},
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllSpeakers(speakers: speakers),
+                    ),
+                  );
+                },
                 child: Text(
                   "See all",
-                  style: TextStyle(color: AppColors.inkWellSeeAll),
+                  style: TextStyle(color: AppColors.gestureDetectorSeeAll),
                 ),
               ),
             ],
@@ -134,12 +124,4 @@ class _SpeakersState extends State<Speakers> {
       ),
     );
   }
-}
-
-class Speaker {
-  final String imageUrl;
-  final String name;
-  final String job;
-
-  Speaker({required this.imageUrl, required this.name, required this.job});
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:siade2/src/features/home/widgets/widgets.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
 
-import '../../../commons/data/models/models.dart';
+import '../../../commons/data/models.dart';
 
 class Feed extends StatefulWidget {
   final List<Post> posts;
@@ -33,7 +33,7 @@ class _FeedState extends State<Feed> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Posts(post: post),
             ),
-            Divider(color: AppColors.greyDivider, height: 3),
+            Divider(color: AppColors.darkGrey, height: 3),
           ],
         );
       }).toList(),

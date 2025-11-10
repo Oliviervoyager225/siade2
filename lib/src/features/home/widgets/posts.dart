@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../commons/data/models/models.dart';
+import '../../../commons/data/models.dart';
 
 class Posts extends StatefulWidget {
   final Post post;

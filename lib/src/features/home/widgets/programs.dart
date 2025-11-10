@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:siade2/src/features/home/widgets/widgets.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
-import 'package:intl/intl.dart';
+import 'package:siade2/src/commons/data/models.dart';
 
 class Programs extends StatefulWidget {
   @override
@@ -10,19 +11,6 @@ class Programs extends StatefulWidget {
 }
 
 class _ProgramsState extends State<Programs> {
-  final List<ProgramsItem> programs = [
-    ProgramsItem(
-      imageUrl: 'assets/images/program_1.jpg',
-      title: 'The Weekend',
-      date: '2025-12-21',
-    ),
-    ProgramsItem(
-      imageUrl: 'assets/images/program_2.jpg',
-      title: 'Fire Store',
-      date: '2025-12-22',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,11 +28,18 @@ class _ProgramsState extends State<Programs> {
                   fontSize: 16.sp,
                 ),
               ),
-              InkWell(
-                onTap: () {},
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllPrograms(programs: programs),
+                    ),
+                  );
+                },
                 child: Text(
                   "See all",
-                  style: TextStyle(color: AppColors.inkWellSeeAll),
+                  style: TextStyle(color: AppColors.gestureDetectorSeeAll),
                 ),
               ),
             ],
@@ -162,24 +157,5 @@ class _ProgramsState extends State<Programs> {
         ],
       ),
     );
-  }
-}
-
-class ProgramsItem {
-  final String imageUrl;
-  final String title;
-  final String date;
-
-  ProgramsItem({
-    required this.imageUrl,
-    required this.title,
-    required this.date,
-  });
-
-  List<String> convertDate() {
-    DateTime dateTime = DateFormat("yyyy-MM-dd").parse(this.date);
-
-    String formattedDate = DateFormat("d MMM").format(dateTime);
-    return formattedDate.split(' ');
   }
 }

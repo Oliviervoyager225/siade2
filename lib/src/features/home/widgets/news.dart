@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:siade2/src/features/home/widgets/all_news.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
+import 'package:siade2/src/commons/data/models.dart';
 
 class News extends StatefulWidget {
   @override
@@ -9,24 +11,6 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
-  final List<NewsItem> news = [
-    NewsItem(
-      imageUrl: 'assets/images/story_1.jpg',
-      imageSender: 'assets/images/profile_image.jpg',
-    ),
-    NewsItem(
-      imageUrl: 'assets/images/story_2.jpg',
-      imageSender: 'assets/images/profile_image.jpg',
-    ),
-    NewsItem(
-      imageUrl: 'assets/images/story_3.jpg',
-      imageSender: 'assets/images/profile_image.jpg',
-    ),
-    NewsItem(
-      imageUrl: 'assets/images/story_4.jpg',
-      imageSender: 'assets/images/profile_image.jpg',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +29,16 @@ class _NewsState extends State<News> {
                   fontSize: 16.sp,
                 ),
               ),
-              InkWell(
-                onTap: () {},
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AllNews())
+                  );
+                },
                 child: Text(
                   "See all",
-                  style: TextStyle(color: AppColors.inkWellSeeAll),
+                  style: TextStyle(color: AppColors.gestureDetectorSeeAll),
                 ),
               ),
             ],
@@ -154,11 +143,4 @@ class _NewsState extends State<News> {
       ),
     );
   }
-}
-
-class NewsItem {
-  final String imageUrl;
-  final String imageSender;
-
-  NewsItem({required this.imageUrl, required this.imageSender});
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:siade2/src/features/home/widgets/widgets.dart';
+import 'package:siade2/src/commons/data/models.dart';
 import 'package:siade2/src/theme/theme.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,7 +11,7 @@ class Exponents extends StatefulWidget {
 }
 
 class _ExponentsState extends State<Exponents> {
-  final List<String> exponents = [
+  final List<String> exponentsHome = [
     "assets/images/exposant.jpg",
     "assets/images/story_1.jpg",
     "assets/images/story_2.jpg",
@@ -53,9 +55,9 @@ class _ExponentsState extends State<Exponents> {
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: exponents.length,
+                  itemCount: exponentsHome.length,
                   itemBuilder: (context, index) {
-                    final exponent = exponents[index];
+                    final exponent = exponentsHome[index];
 
                     final bool isFirst = index == 0;
 
@@ -88,8 +90,15 @@ class _ExponentsState extends State<Exponents> {
               borderRadius: BorderRadius.circular(8.w),
               color: AppColors.primaryRed,
             ),
-            child: InkWell(
-              onTap: () {},
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AllExponents(exponents: exponents),
+                  ),
+                );
+              },
               child: Text(
                 '+ ${exponents.length}k',
                 style: TextStyle(

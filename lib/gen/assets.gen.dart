@@ -24,6 +24,9 @@ class $AssetsImagesGen {
   AssetGenImage get avatarProfile =>
       const AssetGenImage('assets/images/avatar_profile.png');
 
+  /// File path: assets/images/back.png
+  AssetGenImage get back => const AssetGenImage('assets/images/back.png');
+
   /// File path: assets/images/carousel_1.jpg
   AssetGenImage get carousel1 =>
       const AssetGenImage('assets/images/carousel_1.jpg');
@@ -60,15 +63,27 @@ class $AssetsImagesGen {
   AssetGenImage get exposant =>
       const AssetGenImage('assets/images/exposant.jpg');
 
+  /// File path: assets/images/facebook.png
+  AssetGenImage get facebook =>
+      const AssetGenImage('assets/images/facebook.png');
+
   /// File path: assets/images/feed.png
   AssetGenImage get feed => const AssetGenImage('assets/images/feed.png');
 
   /// File path: assets/images/gallery.png
   AssetGenImage get gallery => const AssetGenImage('assets/images/gallery.png');
 
+  /// File path: assets/images/instagram.png
+  AssetGenImage get instagram =>
+      const AssetGenImage('assets/images/instagram.png');
+
   /// File path: assets/images/language.png
   AssetGenImage get language =>
       const AssetGenImage('assets/images/language.png');
+
+  /// File path: assets/images/linkedIn.png
+  AssetGenImage get linkedIn =>
+      const AssetGenImage('assets/images/linkedIn.png');
 
   /// File path: assets/images/location.png
   AssetGenImage get location =>
@@ -76,6 +91,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
+  /// File path: assets/images/photo_profile.jpg
+  AssetGenImage get photoProfile =>
+      const AssetGenImage('assets/images/photo_profile.jpg');
 
   /// File path: assets/images/plus.png
   AssetGenImage get plus => const AssetGenImage('assets/images/plus.png');
@@ -89,6 +108,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
 
+  /// File path: assets/images/profile_1.jpg
+  AssetGenImage get profile1 =>
+      const AssetGenImage('assets/images/profile_1.jpg');
+
+  /// File path: assets/images/profile_2.jpg
+  AssetGenImage get profile2 =>
+      const AssetGenImage('assets/images/profile_2.jpg');
+
+  /// File path: assets/images/profile_banner.jpg
+  AssetGenImage get profileBanner =>
+      const AssetGenImage('assets/images/profile_banner.jpg');
+
   /// File path: assets/images/profile_image.jpg
   AssetGenImage get profileImage =>
       const AssetGenImage('assets/images/profile_image.jpg');
@@ -101,12 +132,19 @@ class $AssetsImagesGen {
   AssetGenImage get program2 =>
       const AssetGenImage('assets/images/program_2.jpg');
 
+  /// File path: assets/images/qr_code.png
+  AssetGenImage get qrCode => const AssetGenImage('assets/images/qr_code.png');
+
   /// File path: assets/images/restaurant.png
   AssetGenImage get restaurant =>
       const AssetGenImage('assets/images/restaurant.png');
 
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
+
+  /// File path: assets/images/sms_avatar.png
+  AssetGenImage get smsAvatar =>
+      const AssetGenImage('assets/images/sms_avatar.png');
 
   /// File path: assets/images/speaker_1.jpg
   AssetGenImage get speaker1 =>
@@ -120,6 +158,18 @@ class $AssetsImagesGen {
   AssetGenImage get speaker3 =>
       const AssetGenImage('assets/images/speaker_3.jpg');
 
+  /// File path: assets/images/status_1.jpg
+  AssetGenImage get status1 =>
+      const AssetGenImage('assets/images/status_1.jpg');
+
+  /// File path: assets/images/status_2.jpg
+  AssetGenImage get status2 =>
+      const AssetGenImage('assets/images/status_2.jpg');
+
+  /// File path: assets/images/status_3.jpg
+  AssetGenImage get status3 =>
+      const AssetGenImage('assets/images/status_3.jpg');
+
   /// File path: assets/images/story_1.jpg
   AssetGenImage get story1 => const AssetGenImage('assets/images/story_1.jpg');
 
@@ -132,11 +182,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/story_4.jpg
   AssetGenImage get story4 => const AssetGenImage('assets/images/story_4.jpg');
 
+  /// File path: assets/images/tiktok.png
+  AssetGenImage get tiktok => const AssetGenImage('assets/images/tiktok.png');
+
+  /// File path: assets/images/youtube.png
+  AssetGenImage get youtube => const AssetGenImage('assets/images/youtube.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     add,
     alert,
     avatarProfile,
+    back,
     carousel1,
     carousel2,
     carousel3,
@@ -146,27 +203,41 @@ class $AssetsImagesGen {
     carouselBottom2,
     conversation,
     exposant,
+    facebook,
     feed,
     gallery,
+    instagram,
     language,
+    linkedIn,
     location,
     logo,
+    photoProfile,
     plus,
     post1,
     post2,
     profile,
+    profile1,
+    profile2,
+    profileBanner,
     profileImage,
     program1,
     program2,
+    qrCode,
     restaurant,
     search,
+    smsAvatar,
     speaker1,
     speaker2,
     speaker3,
+    status1,
+    status2,
+    status3,
     story1,
     story2,
     story3,
     story4,
+    tiktok,
+    youtube,
   ];
 }
 
