@@ -37,7 +37,7 @@ class _AllProgramsState extends State<AllPrograms> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => AppLayout()),
                     );
                   },
                   child: Container(

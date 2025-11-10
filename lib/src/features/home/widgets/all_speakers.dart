@@ -33,7 +33,7 @@ class _AllSpeakersState extends State<AllSpeakers> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => AppLayout()),
                     );
                   },
                   child: Container(

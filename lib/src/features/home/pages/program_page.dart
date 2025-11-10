@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siade2/src/features/home/pages/app_layout.dart';
 import 'package:siade2/src/features/home/pages/home_page.dart';
 
 class ProgramPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _ProgramPageState extends State<ProgramPage> {
               IconButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => AppLayout()),
                 ),
                 icon: Icon(Icons.arrow_back),
               ),
@@ -32,7 +33,7 @@ class _ProgramPageState extends State<ProgramPage> {
               IconButton(
                 onPressed: () => Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => AppLayout()),
                   (route) => false,
                 ),
                 icon: Icon(Icons.arrow_back),

@@ -17,7 +17,7 @@ class _AppLayoutState extends State<AppLayout> {
   bool _showBottomNav = true;
 
   final List<Widget> _pages = [
-    Placeholder(),
+    CustomDrawer(),
     ChatPage(),
     HomePage(),
     AlertPage(),

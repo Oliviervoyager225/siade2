@@ -37,7 +37,7 @@ class _AllExponentsState extends State<AllExponents> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => AppLayout()),
                     );
                   },
                   child: Container(
