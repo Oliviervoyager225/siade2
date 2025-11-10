@@ -4,6 +4,8 @@ import 'package:siade2/src/features/home/pages/pages.dart';
 import 'package:siade2/src/features/home/widgets/all_programs.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
 
+import '../../../../gen/assets.gen.dart';
+
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
 
@@ -101,7 +103,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   padding: const EdgeInsets.all(16),
                   child: Row(
                     children: [
-                      const Icon(Icons.language, color: Colors.white),
+                      Assets.images.language.image(width: 25, height: 25),
                       const SizedBox(width: 10),
                       const Text(
                         'Langue',
@@ -144,15 +146,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: 30),
 
               // --- Menu items ---
-              _buildMenuItem(Icons.event_note, 'Programme', () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AllPrograms(programs: programs,)));
+              _buildMenuItem(Assets.images.feed.image(width: 25, height: 25), 'Programme', () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AllPrograms(programs: programs),
+                  ),
+                );
               }),
-              const SizedBox(height: 20),
-              _buildMenuItem(Icons.photo_album, 'Galerie', () {}),
-              const SizedBox(height: 20),
-              _buildMenuItem(Icons.location_on_outlined, 'Localisation', () {}),
-              const SizedBox(height: 20),
-              _buildMenuItem(Icons.restaurant_menu, 'Resto SIADE', () {}),
+              const SizedBox(height: 40),
+              _buildMenuItem(Assets.images.feed.image(width: 25, height: 25), 'Galerie', () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GalleryPage(),
+                  ),
+                );
+              }),
+              const SizedBox(height: 40),
+              _buildMenuItem(Assets.images.location.image(width: 25, height: 25), 'Localisation', () {}),
+              const SizedBox(height: 40),
+              _buildMenuItem(Assets.images.restaurant.image(width: 25, height: 25), 'Resto SIADE', () {}),
 
               const Spacer(),
 
@@ -194,18 +208,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String label, VoidCallback onTap) {
+  Widget _buildMenuItem(Widget icon, String label, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Row(
         children: [
-          Icon(icon, color: Colors.white),
+          Container(child: icon),
           const SizedBox(width: 12),
           Text(
             label,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
           ),

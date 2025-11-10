@@ -8,3 +8,4 @@ export 'program_page.dart';
 export 'profile_infos_page.dart';
 export 'conversation_page.dart';
 export 'custom_drawer.dart';
+export 'gallery_page.dart';
