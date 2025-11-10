@@ -16,7 +16,7 @@ class _AppLayoutState extends State<AppLayout> {
 
   bool _showBottomNav = true;
 
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     Placeholder(),
     ChatPage(),
     HomePage(),
@@ -24,7 +24,7 @@ class _AppLayoutState extends State<AppLayout> {
     ProfilePage(),
   ];
 
-  List<dynamic> icons = [
+  final List<dynamic> icons = [
     Icons.newspaper_sharp,
     Icons.mark_as_unread_sharp,
     Icons.home_outlined,

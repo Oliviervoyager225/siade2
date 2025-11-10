@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:siade2/src/commons/data/models.dart';
 import 'package:siade2/src/features/home/pages/home_page.dart';
+import 'package:siade2/src/features/home/pages/pages.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -138,7 +139,12 @@ class _ChatPageState extends State<ChatPage> {
                 final currentMessage = messages[index];
         
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ConversationPage(message: currentMessage))
+                    );
+                  },
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundImage: AssetImage(currentMessage.imagePath),
