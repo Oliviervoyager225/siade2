@@ -7,11 +7,9 @@ version: 1.0.0+1
 environment:
   sdk: ^3.8.1
 
-
 dependencies:
   flutter:
     sdk: flutter
-
   gap:
   sizer:
   flutter_svg:
@@ -28,7 +26,6 @@ dev_dependencies:
   flutter_gen_runner:
   build_runner:
 
-
   flutter_lints: ^5.0.0
 
 # The following section is specific to Flutter packages.
@@ -37,7 +34,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images
+    - assets/images/
 
 flutter_gen:
   output: lib/gen/
