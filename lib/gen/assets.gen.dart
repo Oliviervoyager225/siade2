@@ -24,8 +24,8 @@ class $AssetsImagesGen {
   AssetGenImage get avatarProfile =>
       const AssetGenImage('assets/images/avatar_profile.png');
 
-  /// File path: assets/images/back.png
-  AssetGenImage get back => const AssetGenImage('assets/images/back.png');
+  /// File path: assets/images/back_1.png
+  AssetGenImage get back => const AssetGenImage('assets/images/back_1.png');
 
   /// File path: assets/images/carousel_1.jpg
   AssetGenImage get carousel1 =>
