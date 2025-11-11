@@ -35,10 +35,7 @@ class _AllNewsState extends State<AllNews> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AppLayout()),
-                        );
+                        Navigator.pop(context);;
                       },
                       child: Container(
                         height: 32,

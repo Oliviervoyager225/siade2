@@ -20,12 +20,27 @@ class $AssetsImagesGen {
   /// File path: assets/images/alert.png
   AssetGenImage get alert => const AssetGenImage('assets/images/alert.png');
 
+  /// File path: assets/images/avat.png
+  AssetGenImage get avat => const AssetGenImage('assets/images/avat.png');
+
+  /// File path: assets/images/avatar.png
+  AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.png');
+
   /// File path: assets/images/avatar_profile.png
   AssetGenImage get avatarProfile =>
       const AssetGenImage('assets/images/avatar_profile.png');
 
+  /// File path: assets/images/back.png
+  AssetGenImage get back => const AssetGenImage('assets/images/back.png');
+
   /// File path: assets/images/back_1.png
-  AssetGenImage get back => const AssetGenImage('assets/images/back_1.png');
+  AssetGenImage get back1 => const AssetGenImage('assets/images/back_1.png');
+
+  /// File path: assets/images/bg1.png
+  AssetGenImage get bg1 => const AssetGenImage('assets/images/bg1.png');
+
+  /// File path: assets/images/bg2.png
+  AssetGenImage get bg2 => const AssetGenImage('assets/images/bg2.png');
 
   /// File path: assets/images/carousel_1.jpg
   AssetGenImage get carousel1 =>
@@ -73,6 +88,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/gallery.png
   AssetGenImage get gallery => const AssetGenImage('assets/images/gallery.png');
 
+  /// File path: assets/images/google.png
+  AssetGenImage get google => const AssetGenImage('assets/images/google.png');
+
   /// File path: assets/images/instagram.png
   AssetGenImage get instagram =>
       const AssetGenImage('assets/images/instagram.png');
@@ -85,12 +103,25 @@ class $AssetsImagesGen {
   AssetGenImage get linkedIn =>
       const AssetGenImage('assets/images/linkedIn.png');
 
+  /// File path: assets/images/live.png
+  AssetGenImage get live => const AssetGenImage('assets/images/live.png');
+
   /// File path: assets/images/location.png
   AssetGenImage get location =>
       const AssetGenImage('assets/images/location.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
+  /// File path: assets/images/logosiade.png
+  AssetGenImage get logosiade =>
+      const AssetGenImage('assets/images/logosiade.png');
+
+  /// File path: assets/images/mapbg.png
+  AssetGenImage get mapbg => const AssetGenImage('assets/images/mapbg.png');
+
+  /// File path: assets/images/photo.png
+  AssetGenImage get photo => const AssetGenImage('assets/images/photo.png');
 
   /// File path: assets/images/photo_profile.jpg
   AssetGenImage get photoProfile =>
@@ -151,6 +182,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/send.png
   AssetGenImage get send => const AssetGenImage('assets/images/send.png');
 
+  /// File path: assets/images/signup.png
+  AssetGenImage get signup => const AssetGenImage('assets/images/signup.png');
+
   /// File path: assets/images/sms_avatar.png
   AssetGenImage get smsAvatar =>
       const AssetGenImage('assets/images/sms_avatar.png');
@@ -167,6 +201,9 @@ class $AssetsImagesGen {
   AssetGenImage get speaker3 =>
       const AssetGenImage('assets/images/speaker_3.jpg');
 
+  /// File path: assets/images/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
+
   /// File path: assets/images/star.png
   AssetGenImage get star => const AssetGenImage('assets/images/star.png');
 
@@ -182,6 +219,9 @@ class $AssetsImagesGen {
   AssetGenImage get status3 =>
       const AssetGenImage('assets/images/status_3.jpg');
 
+  /// File path: assets/images/story.png
+  AssetGenImage get story => const AssetGenImage('assets/images/story.png');
+
   /// File path: assets/images/story_1.jpg
   AssetGenImage get story1 => const AssetGenImage('assets/images/story_1.jpg');
 
@@ -194,6 +234,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/story_4.jpg
   AssetGenImage get story4 => const AssetGenImage('assets/images/story_4.jpg');
 
+  /// File path: assets/images/threeavatar.png
+  AssetGenImage get threeavatar =>
+      const AssetGenImage('assets/images/threeavatar.png');
+
   /// File path: assets/images/tiktok.png
   AssetGenImage get tiktok => const AssetGenImage('assets/images/tiktok.png');
 
@@ -204,8 +248,13 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     add,
     alert,
+    avat,
+    avatar,
     avatarProfile,
     back,
+    back1,
+    bg1,
+    bg2,
     carousel1,
     carousel2,
     carousel3,
@@ -218,11 +267,16 @@ class $AssetsImagesGen {
     facebook,
     feed,
     gallery,
+    google,
     instagram,
     language,
     linkedIn,
+    live,
     location,
     logo,
+    logosiade,
+    mapbg,
+    photo,
     photoProfile,
     plat,
     plus,
@@ -240,18 +294,22 @@ class $AssetsImagesGen {
     restaurant,
     search,
     send,
+    signup,
     smsAvatar,
     speaker1,
     speaker2,
     speaker3,
+    splash,
     star,
     status1,
     status2,
     status3,
+    story,
     story1,
     story2,
     story3,
     story4,
+    threeavatar,
     tiktok,
     youtube,
   ];

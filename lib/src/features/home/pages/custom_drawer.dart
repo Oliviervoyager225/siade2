@@ -67,10 +67,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   Positioned(
                     right: -11,
                     child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AppLayout()),
-                      ),
+                      onTap: () => Navigator.pop(context),
                       child: Container(
                         height: 32,
                         width: 32,
@@ -174,6 +171,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Assets.images.location.image(width: 25, height: 25),
                 'Localisation',
                 () {},
+              ),
+              const SizedBox(height: 40),
+              _buildMenuItem(
+                Assets.images.live.image(width: 25, height: 25),
+                'Live',
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RestaurantPage()),
+                  );
+                },
               ),
               const SizedBox(height: 40),
               _buildMenuItem(

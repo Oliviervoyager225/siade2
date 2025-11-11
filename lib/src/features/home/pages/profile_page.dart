@@ -77,10 +77,7 @@ class _ProfilePageState extends State<ProfilePage>
                   top: 30,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AppLayout()),
-                      );
+                      Navigator.pop(context);
                     },
                     child: Container(
                       height: 32,

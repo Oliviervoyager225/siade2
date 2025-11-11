@@ -50,36 +50,6 @@ class _GalleryPageState extends State<GalleryPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   spacing: 20,
                   children: [
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     GestureDetector(
-                    //       onTap: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => AppLayout(),
-                    //           ),
-                    //         );
-                    //       },
-                    //       child: Container(
-                    //         height: 32,
-                    //         width: 32,
-                    //         decoration: BoxDecoration(
-                    //           shape: BoxShape.circle,
-                    //           color: Colors.black,
-                    //         ),
-                    //         child: Icon(
-                    //           Icons.arrow_back,
-                    //           color: Colors.white,
-                    //           size: 16,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //
-                    //     Assets.images.logo.image(height: 20),
-                    //   ],
-                    // ),
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       width: 100.w,

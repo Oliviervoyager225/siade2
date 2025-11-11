@@ -31,10 +31,7 @@ class _AllSpeakersState extends State<AllSpeakers> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AppLayout()),
-                    );
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: 32,

@@ -21,10 +21,7 @@ class _ProgramPageState extends State<ProgramPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               IconButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AppLayout()),
-                ),
+                onPressed: () => Navigator.pop(context),
                 icon: Icon(Icons.arrow_back),
               ),
           

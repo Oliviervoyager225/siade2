@@ -182,13 +182,19 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                      child: Text(
-                        'Lorem Ipsum',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.sp,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Lorem Ipsum',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                          SizedBox(height: 10,)
+                        ],
                       ),
                     ),
                   ),
@@ -211,7 +217,10 @@ class _RestaurantPageState extends State<RestaurantPage> {
                             padding: EdgeInsets.all(20),
                             height: 150,
                             width: MediaQuery.of(context).size.width,
-                            color: Colors.black.withValues(alpha: 0.5),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: 0.5),
+                              borderRadius: BorderRadius.circular(30)
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -228,7 +237,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                       ),
                                     ),
                                     Text(
-                                      'Lorem ipsum is placeholder ra, and \npublishing industries',
+                                      'Lorem ipsum is placeholder\n ra, and publishing industries',
                                       style: TextStyle(
                                         color: AppColors.greySecondary,
                                         fontSize: 13.sp,
@@ -243,7 +252,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                     ),
                                   ],
                                 ),
-                                // Image.asset('assets/images/plat.png'),
+                                Image.asset('assets/images/plat.png'),
                               ],
                             ),
                           ),

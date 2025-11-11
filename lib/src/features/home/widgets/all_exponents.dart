@@ -35,10 +35,7 @@ class _AllExponentsState extends State<AllExponents> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AppLayout()),
-                    );
+                    Navigator.pop(context);;
                   },
                   child: Container(
                     height: 32,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siade2/src/features/home/pages/pages.dart';
 import 'package:siade2/src/features/login/pages/pages.dart';
 import 'package:siade2/src/features/login/widgets/widgets.dart';
 
@@ -35,7 +36,7 @@ class _LoginState extends State<Login> {
                   right: 0,
                   child: Center(
                     child: Container(
-                      padding:  EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 8,
                       ),
@@ -145,7 +146,12 @@ class _LoginState extends State<Login> {
                     text: 'Login',
                     isActive: true,
                     isFullWidth: true,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AppLayout()),
+                      );
+                    },
                   ),
                   SizedBox(height: 25),
 

@@ -32,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context)=> AppLayout()));},
                         child: Container(
                           height: 32,
                           width: 32,
