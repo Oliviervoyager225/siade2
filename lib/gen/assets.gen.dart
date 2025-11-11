@@ -241,6 +241,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/tiktok.png
   AssetGenImage get tiktok => const AssetGenImage('assets/images/tiktok.png');
 
+  /// File path: assets/images/tracking.png
+  AssetGenImage get tracking =>
+      const AssetGenImage('assets/images/tracking.png');
+
   /// File path: assets/images/youtube.png
   AssetGenImage get youtube => const AssetGenImage('assets/images/youtube.png');
 
@@ -311,6 +315,7 @@ class $AssetsImagesGen {
     story4,
     threeavatar,
     tiktok,
+    tracking,
     youtube,
   ];
 }

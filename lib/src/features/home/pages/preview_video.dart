@@ -218,7 +218,6 @@ class _PreviewVideoState extends State<PreviewVideo> {
           // Contrôles centraux (play/pause, avance, recule)
           if (_showControls)
             Positioned(
-              bottom: 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,

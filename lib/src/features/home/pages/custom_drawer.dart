@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:siade2/src/commons/data/models/program.dart';
 import 'package:siade2/src/features/home/pages/pages.dart';
 import 'package:siade2/src/features/home/widgets/all_programs.dart';
+import 'package:siade2/src/features/socialnetwork/pages/page.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -67,7 +68,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   Positioned(
                     right: -11,
                     child: GestureDetector(
-                      onTap: () => Navigator.pop(context),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())),
                       child: Container(
                         height: 32,
                         width: 32,
@@ -184,7 +185,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Live()),
+                    MaterialPageRoute(builder: (context) => LiveStreamScreen()),
                   );
                 },
               ),

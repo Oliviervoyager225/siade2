@@ -36,7 +36,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         backgroundColor: Color(0xFF0A0E27),
         elevation: 0,
         leading: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: Text(
             'Annuler',
             style: TextStyle(color: Colors.blue, fontSize: 14),
