@@ -96,6 +96,9 @@ class $AssetsImagesGen {
   AssetGenImage get photoProfile =>
       const AssetGenImage('assets/images/photo_profile.jpg');
 
+  /// File path: assets/images/plat.png
+  AssetGenImage get plat => const AssetGenImage('assets/images/plat.png');
+
   /// File path: assets/images/plus.png
   AssetGenImage get plus => const AssetGenImage('assets/images/plus.png');
 
@@ -135,12 +138,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/qr_code.png
   AssetGenImage get qrCode => const AssetGenImage('assets/images/qr_code.png');
 
+  /// File path: assets/images/restau.png
+  AssetGenImage get restau => const AssetGenImage('assets/images/restau.png');
+
   /// File path: assets/images/restaurant.png
   AssetGenImage get restaurant =>
       const AssetGenImage('assets/images/restaurant.png');
 
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
+
+  /// File path: assets/images/send.png
+  AssetGenImage get send => const AssetGenImage('assets/images/send.png');
 
   /// File path: assets/images/sms_avatar.png
   AssetGenImage get smsAvatar =>
@@ -157,6 +166,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/speaker_3.jpg
   AssetGenImage get speaker3 =>
       const AssetGenImage('assets/images/speaker_3.jpg');
+
+  /// File path: assets/images/star.png
+  AssetGenImage get star => const AssetGenImage('assets/images/star.png');
 
   /// File path: assets/images/status_1.jpg
   AssetGenImage get status1 =>
@@ -212,6 +224,7 @@ class $AssetsImagesGen {
     location,
     logo,
     photoProfile,
+    plat,
     plus,
     post1,
     post2,
@@ -223,12 +236,15 @@ class $AssetsImagesGen {
     program1,
     program2,
     qrCode,
+    restau,
     restaurant,
     search,
+    send,
     smsAvatar,
     speaker1,
     speaker2,
     speaker3,
+    star,
     status1,
     status2,
     status3,
@@ -241,10 +257,21 @@ class $AssetsImagesGen {
   ];
 }
 
+class $AssetsVideosGen {
+  const $AssetsVideosGen();
+
+  /// File path: assets/videos/video.mp4
+  String get video => 'assets/videos/video.mp4';
+
+  /// List of all assets
+  List<String> get values => [video];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsVideosGen videos = $AssetsVideosGen();
 }
 
 class AssetGenImage {

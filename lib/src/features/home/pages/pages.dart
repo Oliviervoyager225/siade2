@@ -9,3 +9,7 @@ export 'profile_infos_page.dart';
 export 'conversation_page.dart';
 export 'custom_drawer.dart';
 export 'gallery_page.dart';
+export 'restaurant_page.dart';
+export 'preview_image.dart';
+export 'preview_video.dart';
+export 'details_dish.dart';

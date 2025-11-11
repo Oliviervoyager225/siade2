@@ -146,27 +146,46 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: 30),
 
               // --- Menu items ---
-              _buildMenuItem(Assets.images.feed.image(width: 25, height: 25), 'Programme', () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AllPrograms(programs: programs),
-                  ),
-                );
-              }),
+              _buildMenuItem(
+                Assets.images.feed.image(width: 25, height: 25),
+                'Programme',
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllPrograms(programs: programs),
+                    ),
+                  );
+                },
+              ),
               const SizedBox(height: 40),
-              _buildMenuItem(Assets.images.feed.image(width: 25, height: 25), 'Galerie', () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => GalleryPage(),
-                  ),
-                );
-              }),
+              _buildMenuItem(
+                Assets.images.feed.image(width: 25, height: 25),
+                'Galerie',
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GalleryPage()),
+                  );
+                },
+              ),
               const SizedBox(height: 40),
-              _buildMenuItem(Assets.images.location.image(width: 25, height: 25), 'Localisation', () {}),
+              _buildMenuItem(
+                Assets.images.location.image(width: 25, height: 25),
+                'Localisation',
+                () {},
+              ),
               const SizedBox(height: 40),
-              _buildMenuItem(Assets.images.restaurant.image(width: 25, height: 25), 'Resto SIADE', () {}),
+              _buildMenuItem(
+                Assets.images.restaurant.image(width: 25, height: 25),
+                'Resto SIADE',
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RestaurantPage()),
+                  );
+                },
+              ),
 
               const Spacer(),
 
