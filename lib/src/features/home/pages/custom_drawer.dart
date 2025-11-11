@@ -170,7 +170,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
               _buildMenuItem(
                 Assets.images.location.image(width: 25, height: 25),
                 'Localisation',
-                () {},
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Location()),
+                  );
+                },
               ),
               const SizedBox(height: 40),
               _buildMenuItem(
@@ -179,7 +184,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RestaurantPage()),
+                    MaterialPageRoute(builder: (context) => Live()),
                   );
                 },
               ),

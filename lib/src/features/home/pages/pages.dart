@@ -13,3 +13,5 @@ export 'restaurant_page.dart';
 export 'preview_image.dart';
 export 'preview_video.dart';
 export 'details_dish.dart';
+export 'live.dart';
+export 'location.dart';
