@@ -35,7 +35,7 @@ class _AllExponentsState extends State<AllExponents> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);;
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: 32,

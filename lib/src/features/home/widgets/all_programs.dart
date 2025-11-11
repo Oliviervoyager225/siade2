@@ -35,7 +35,7 @@ class _AllProgramsState extends State<AllPrograms> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);;
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: 32,
