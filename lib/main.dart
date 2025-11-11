@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:siade2/src/features/maps/pages/page.dart';
+import 'package:siade2/src/features/socialnetwork/pages/page.dart';
 import 'package:siade2/src/features/splash/pages/pages.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
-          home: SplashPage(),
+          home: CreatePostScreen(),
         );
       },
     );
