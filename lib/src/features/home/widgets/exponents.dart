@@ -83,7 +83,7 @@ class _ExponentsState extends State<Exponents> {
           right: 10,
           top: 35,
           child: Container(
-            alignment: AlignmentGeometry.center,
+            alignment: Alignment.center,
             width: 60,
             height: 60,
             decoration: BoxDecoration(

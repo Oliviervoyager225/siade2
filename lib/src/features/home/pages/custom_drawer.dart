@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:siade2/src/commons/data/models/program.dart';
 import 'package:siade2/src/features/home/pages/pages.dart';
 import 'package:siade2/src/features/home/widgets/all_programs.dart';
 import 'package:siade2/src/features/socialnetwork/pages/page.dart';
+import 'package:siade2/src/providers/providers.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -139,6 +141,50 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     ? CrossFadeState.showSecond
                     : CrossFadeState.showFirst,
                 duration: const Duration(milliseconds: 250),
+              ),
+
+              const SizedBox(height: 20),
+
+              // --- Section Thème ---
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1E1B3A),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Provider.of<ThemeProvider>(context).isDarkMode
+                              ? Icons.dark_mode
+                              : Icons.light_mode,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Mode clair',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Switch(
+                      value: Provider.of<ThemeProvider>(context).isLightMode,
+                      onChanged: (_) {
+                        Provider.of<ThemeProvider>(context, listen: false)
+                            .toggleTheme();
+                      },
+                      activeColor: Color(0xff42A5F5),
+                    ),
+                  ],
+                ),
               ),
 
               const SizedBox(height: 30),
