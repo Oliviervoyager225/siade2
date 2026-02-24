@@ -16,8 +16,9 @@ class DetailsPrograms extends StatefulWidget {
 class _DetailsProgramsState extends State<DetailsPrograms> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: isLight ? Colors.white : Colors.black,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,10 +33,12 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
                   image: DecorationImage(
                     image: AssetImage(widget.program.imageUrl),
                     fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                      Colors.black.withValues(alpha: 0.6),
-                      BlendMode.color,
-                    ),
+                    colorFilter: isLight 
+                        ? null 
+                        : ColorFilter.mode(
+                            Colors.black.withValues(alpha: 0.6),
+                            BlendMode.color,
+                          ),
                   ),
                 ),
               ),
@@ -45,7 +48,10 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [Colors.transparent, Colors.black],
+                      colors: isLight
+                          ? [Colors.transparent, Color(0xFF60438C)]
+                          : [Colors.transparent, Colors.black],
+                      stops: isLight ? [0.6, 1.0] : null,
                     ),
                   ),
                 ),
@@ -63,7 +69,9 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
                     width: 15.w,
                     height: 4.h,
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.3),
+                      color: isLight 
+                          ? Color(0xFF60438C).withOpacity(0.3) 
+                          : Colors.black.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Icon(Icons.arrow_back, color: Colors.white),
@@ -80,7 +88,9 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
                     width: 15.w,
                     height: 4.h,
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.3),
+                      color: isLight 
+                          ? Color(0xFF60438C).withOpacity(0.3) 
+                          : Colors.black.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Icon(Icons.favorite_border, color: Colors.white),
@@ -91,7 +101,16 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
           ),
 
           Expanded(
-            child: Padding(
+            child: Container(
+              decoration: isLight
+                  ? BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFF60438C), Color(0xFFDEDEDE)],
+                      ),
+                    )
+                  : null,
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,10 +152,12 @@ class _DetailsProgramsState extends State<DetailsPrograms> {
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [
-                              AppColors.primaryBlue,
-                              AppColors.primaryRed,
-                            ],
+                            colors: isLight
+                                ? [Color(0xFF60438C), Color(0xFF9E87CE)]
+                                : [
+                                    AppColors.primaryBlue,
+                                    AppColors.primaryRed,
+                                  ],
                           ),
                           borderRadius: BorderRadius.circular(12),
                         ),

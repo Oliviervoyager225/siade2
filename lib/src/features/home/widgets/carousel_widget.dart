@@ -22,6 +22,7 @@ class _CarouselImagesState extends State<CarouselImages> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Column(
       children: [
         CarouselSlider.builder(

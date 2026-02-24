@@ -16,6 +16,8 @@ class SpeakerItem extends StatefulWidget {
 class _SpakerItemState extends State<SpeakerItem> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -32,11 +34,13 @@ class _SpakerItemState extends State<SpeakerItem> {
             height: 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(200),
-              border: Border.all(color: Colors.white, width: 1),
+              border: Border.all(color: isLight ? Colors.transparent : Colors.white, width: 1),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xff040126), Color(0xff3A1521)],
+                colors: isLight 
+                    ? [Color(0xFF60438C), Color(0xFFF0F0F0)] // Purple to Light Grey
+                    : [Color(0xff040126), Color(0xff3A1521)],
               ),
             ),
             child: Column(
@@ -50,7 +54,7 @@ class _SpakerItemState extends State<SpeakerItem> {
                 Text(
                   widget.speaker.job,
                   style: TextStyle(
-                    color: AppColors.primaryRed,
+                    color: isLight ? Colors.black : AppColors.primaryRed,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),

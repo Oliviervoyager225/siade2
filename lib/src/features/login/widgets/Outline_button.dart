@@ -16,10 +16,15 @@ class OutlineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white24, width: 1.5),
+        color: isLight ? Colors.white.withOpacity(0.6) : null,
+        border: Border.all(
+          color: isLight ? Colors.transparent : Colors.white24,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(25),
       ),
       child: Material(
@@ -42,7 +47,7 @@ class OutlineButton extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: isLight ? Color(0xFF60438C) : Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

@@ -30,15 +30,19 @@ class _AppLayoutState extends State<AppLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: isLight ? Colors.white : null, // Set background color for the layout itself
         body: IndexedStack(index: _currentIndex, children: _pages),
         bottomNavigationBar: Container(
-          color: Colors.black,
+          color: isLight ? const Color(0xFFEAEAEA) : Colors.black, // #EAEAEA background for light mode
           padding: const EdgeInsets.only(left: 50.0, right: 50.0, top: 10),
           child: NavigationBar(
             indicatorShape: CircleBorder(),
-            backgroundColor: Colors.black,
+            backgroundColor: isLight ? const Color(0xFFEAEAEA) : Colors.black, // Match container
+            elevation: isLight ? 0 : 0, // Set to 0 to match the flat look in the image
+            shadowColor: isLight ? Colors.black12 : null,
             selectedIndex: _currentIndex,
             destinations: icons.map((item) {
               var index = icons.indexOf(item);
@@ -60,10 +64,9 @@ class _AppLayoutState extends State<AppLayout> {
                         ? LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [
-                              AppColors.primaryBlue,
-                              AppColors.primaryRed,
-                            ],
+                            colors: isLight 
+                                ? [Color(0xFF60438C), Colors.white] 
+                                : [AppColors.primaryBlue, AppColors.primaryRed],
                           )
                         : null,
                     color: isSelected ? null : Colors.transparent,
@@ -71,7 +74,9 @@ class _AppLayoutState extends State<AppLayout> {
                   ),
                   child: Icon(
                     item,
-                    color: isSelected ? Colors.white : Colors.grey,
+                    color: isSelected 
+                        ? Colors.white // Selected icon is always white
+                        : (isLight ? Color(0xFF60438C) : Colors.grey), // Unselected icon color
                     size: isSelected ? 30 : 24,
                   ),
                 ),

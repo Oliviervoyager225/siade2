@@ -163,14 +163,14 @@ class _StoryScreenState extends State<StoryScreen> {
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xFF07026F), Color(0xFFA01E38)],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
+                              colors: [Color(0xFF60438C), Color(0xFFC7C7C7)],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
                             ),
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xFFA01E38).withOpacity(0.4),
+                                color: Color(0xFF60438C).withOpacity(0.4),
                                 blurRadius: 8,
                                 offset: Offset(0, 2),
                               ),

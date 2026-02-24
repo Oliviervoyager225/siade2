@@ -13,7 +13,9 @@ class AlertPage extends StatefulWidget {
 class _AlertPageState extends State<AlertPage> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : null,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30.0),
@@ -26,7 +28,7 @@ class _AlertPageState extends State<AlertPage> {
                 child: Text(
                   "Alerts",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: isLight ? Color(0xFF60438C) : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp,
                   ),
@@ -51,7 +53,7 @@ class _AlertPageState extends State<AlertPage> {
                         child: Text(
                           item.getDateString(),
                           style: TextStyle(
-                            color: AppColors.greySecondary,
+                            color: isLight ? Colors.black : AppColors.greySecondary,
                             fontSize: 15.sp,
                           ),
                         ),
@@ -66,25 +68,34 @@ class _AlertPageState extends State<AlertPage> {
                                 padding: const EdgeInsets.only(top: 16.0, bottom: 10.0),
                                 child: ListTile(
                                   leading: CircleAvatar(
-                                    backgroundColor: AppColors.darkGrey,
+                                    backgroundColor: isLight ? Color(0xFF60438C) : AppColors.darkGrey,
                                     radius: 40,
-                                    child: Icon(Icons.thumb_up_alt_outlined, color: AppColors.primarySocialBlue,),
+                                    child: Icon(
+                                      Icons.thumb_up_alt_outlined, 
+                                      color: isLight ? Colors.white : AppColors.primarySocialBlue,
+                                    ),
                                   ),
                                   title: Text(
                                     alert['title'],
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: isLight ? Color(0xFF60438C).withOpacity(0.7) : Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   subtitle: Text(
                                     alert['hour'],
-                                    style: TextStyle(color: AppColors.greySecondary),
+                                    style: TextStyle(
+                                      color: isLight ? Colors.black : AppColors.greySecondary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
         
-                              Divider(color: AppColors.greySecondary, height: 0.2),
+                              Divider(
+                                color: isLight ? Color(0xFF60438C) : AppColors.greySecondary, 
+                                height: 0.2
+                              ),
                             ],
                           );
                         }).toList(),

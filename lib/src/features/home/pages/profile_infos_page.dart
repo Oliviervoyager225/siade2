@@ -18,136 +18,144 @@ class _ProfileInfosPageState extends State<ProfileInfosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(40.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          spacing: 20,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                width: 15.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Icon(Icons.arrow_back, color: Colors.white),
-              ),
-            ),
-            Stack(
-              children: [
-                Container(
-                  height: 52.h,
-                  width: 90.w,
-                  margin: EdgeInsets.only(top: photoProfileSize / 2),
-                  padding: EdgeInsets.only(top: 110),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/back_1.png"),
-                      fit: BoxFit.cover,
+      backgroundColor: Color(0xFFF7F7F7),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF60438C).withOpacity(0.3),
+                      shape: BoxShape.circle,
                     ),
+                    child: Icon(Icons.arrow_back, color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF070054),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
                     children: [
+                      SizedBox(height: 30),
+                      Container(
+                        height: 140,
+                        width: 140,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF07026F), Color(0xFFA01E38)],
+                          ),
+                          border: Border.all(color: Colors.transparent, width: 2),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage("assets/images/photo_profile.jpg"),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15),
                       Text(
                         'Fatemate',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16.sp,
+                          fontSize: 22,
                         ),
                       ),
-
                       Text(
                         'Etudiante',
                         style: TextStyle(
-                          color: AppColors.greySecondary,
+                          color: Colors.grey[400],
                           fontWeight: FontWeight.bold,
-                          fontSize: 14.sp,
+                          fontSize: 16,
                         ),
+                      ),
+                      SizedBox(height: 30),
+                      // Speech bubble with QR
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 250,
+                            height: 250,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF0D69C1),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(125),
+                                topRight: Radius.circular(125),
+                                bottomLeft: Radius.circular(125),
+                                bottomRight: Radius.circular(20),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 180,
+                            height: 180,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Image.asset("assets/images/qr_code.png"),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-
-                Positioned(
-                  left: 80,
-                  child: Container(
-                    height: photoProfileBoxSize,
-                    width: photoProfileBoxSize,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [AppColors.primaryBlue, AppColors.primaryRed],
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        photoProfileBoxSize / 2,
-                      ),
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: 5,
-                  left: 83,
-                  child: Container(
-                    height: photoProfileSize,
-                    width: photoProfileSize,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(photoProfileSize / 2),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/photo_profile.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              width: double.infinity,
-              alignment: Alignment.center,
-              child: Column(
-                spacing: 10,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 5,
-                    children: socialMedias.map((socialMedia) {
-                      return Container(
-                        width: 49,
-                        height: 49,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(socialMedia),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                  Text(
-                    '@siade',
-                    style: TextStyle(color: Colors.white, fontSize: 16.sp),
-                  ),
-                ],
               ),
-            ),
-          ],
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: socialMedias.map((socialAsset) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Container(
+                      width: 45,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF60438C),
+                        shape: BoxShape.circle,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset(
+                        socialAsset,
+                        color: Colors.white,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 10),
+              Text(
+                '@siade',
+                style: TextStyle(
+                  color: Color(0xFF60438C),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
   }
+
 }

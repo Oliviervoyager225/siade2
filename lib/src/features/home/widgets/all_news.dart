@@ -19,8 +19,10 @@ class _AllNewsState extends State<AllNews> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: isLight ? Colors.white : null,
         body: Column(
           children: [
             Padding(
@@ -44,7 +46,9 @@ class _AllNewsState extends State<AllNews> {
                           width: 32,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.black,
+                            color: isLight
+                                ? Color(0xFF60438C).withOpacity(0.3)
+                                : Colors.black,
                           ),
                           child: Icon(
                             Icons.arrow_back,
@@ -53,8 +57,10 @@ class _AllNewsState extends State<AllNews> {
                           ),
                         ),
                       ),
-      
-                      Assets.images.logo.image(height: 20),
+
+                      isLight
+                          ? Image.asset('assets/images/logo23.png', height: 20)
+                          : Assets.images.logo.image(height: 20),
                     ],
                   ),
                   Gap(40),
@@ -66,7 +72,7 @@ class _AllNewsState extends State<AllNews> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final newsItem = news[index];
-      
+
                         return Stack(
                           children: [
                             Container(
@@ -99,10 +105,16 @@ class _AllNewsState extends State<AllNews> {
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.transparent,
-                                      Colors.black.withValues(alpha: 0.5),
-                                    ],
+                                    colors: isLight
+                                        ? [
+                                            Colors.transparent,
+                                            Color(0xFF60438C)
+                                                .withValues(alpha: 0.5)
+                                          ]
+                                        : [
+                                            Colors.transparent,
+                                            Colors.black.withValues(alpha: 0.5),
+                                          ],
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                     bottom: Radius.circular(12),
@@ -110,7 +122,7 @@ class _AllNewsState extends State<AllNews> {
                                 ),
                               ),
                             ),
-      
+
                             Positioned(
                               left: 25,
                               bottom: 5,
@@ -121,17 +133,26 @@ class _AllNewsState extends State<AllNews> {
                                     height: 40,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          AppColors.primaryBlue,
-                                          AppColors.primaryRed,
-                                        ],
-                                      ),
+                                      gradient: isLight
+                                          ? LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Color(0xFF60438C),
+                                                Color(0xFF9E87CE)
+                                              ],
+                                            )
+                                          : LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                AppColors.primaryBlue,
+                                                AppColors.primaryRed,
+                                              ],
+                                            ),
                                     ),
                                   ),
-      
+
                                   Positioned(
                                     left: 2,
                                     top: 2,
@@ -142,7 +163,8 @@ class _AllNewsState extends State<AllNews> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
-                                          image: AssetImage(newsItem.imageSender),
+                                          image:
+                                              AssetImage(newsItem.imageSender),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -165,16 +187,16 @@ class _AllNewsState extends State<AllNews> {
                       itemCount: exponentCaterogies.length,
                       itemBuilder: (context, index) {
                         final selectedCategory = exponentCaterogies[index];
-      
+
                         bool isSelected = selectedIndex == index;
-      
+
                         return GestureDetector(
                           onTap: () {
                             setState(() {
                               selectedIndex = index;
                             });
                           },
-      
+
                           child: Container(
                             alignment: Alignment.center,
                             width: 25.w,
@@ -183,24 +205,35 @@ class _AllNewsState extends State<AllNews> {
                               border: Border.all(
                                 color: isSelected
                                     ? Colors.transparent
-                                    : Colors.white,
+                                    : (isLight
+                                        ? Color(0xFF60438C)
+                                        : Colors.white),
                               ),
                               borderRadius: BorderRadius.circular(30),
                               gradient: isSelected
                                   ? LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
-                                      colors: [
-                                        AppColors.primaryBlue,
-                                        AppColors.primaryRed,
-                                      ],
+                                      colors: isLight
+                                          ? [
+                                              Color(0xFF60438C),
+                                              Color(0xFF60438C)
+                                            ]
+                                          : [
+                                              AppColors.primaryBlue,
+                                              AppColors.primaryRed,
+                                            ],
                                     )
                                   : null,
                             ),
                             child: Text(
                               selectedCategory.name,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isSelected
+                                    ? Colors.white
+                                    : (isLight
+                                        ? Color(0xFF60438C)
+                                        : Colors.white),
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -213,48 +246,67 @@ class _AllNewsState extends State<AllNews> {
                 ],
               ),
             ),
-            Divider(color: AppColors.greySecondary, height: 1),
+            Divider(
+                color: isLight ? Color(0xFF60438C).withValues(alpha: 0.2) : AppColors.greySecondary, height: 1),
             SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(child: Feed(posts: posts)),
             ),
           ],
         ),
-        bottomNavigationBar: Stack(
-          children: [
-            Container(
-              height: 70,
-              color: Colors.black,
-              padding: const EdgeInsets.only(left: 50.0, right: 50.0, top: 10),
-            ),
-            Positioned(
-              left: 40.w,
-              top: 10,
-              child: GestureDetector(
+        bottomNavigationBar: Container(
+          height: 80,
+          color: isLight ? Colors.white : Colors.black,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.home_outlined, color: isLight ? Color(0xFF60438C) : Colors.grey),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.mark_as_unread_sharp, color: isLight ? Color(0xFF60438C) : Colors.grey),
+              ),
+              GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => CreatePostScreen()),
                   );
                 },
-                child: AnimatedContainer(
+                child: Container(
                   width: 50,
                   height: 50,
-                  duration: Duration(milliseconds: 0),
-                  curve: Curves.easeInOut,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [AppColors.primaryBlue, AppColors.primaryRed],
+                      colors: isLight 
+                          ? [Color(0xFF60438C), Color(0xFF9E87CE)]
+                          : [AppColors.primaryBlue, AppColors.primaryRed],
                     ),
-                    borderRadius: BorderRadius.circular(40),
+                    shape: BoxShape.circle,
                   ),
                   child: Icon(Icons.add, color: Colors.white, size: 30),
                 ),
               ),
-            ),
-          ],
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.notifications_none, color: isLight ? Color(0xFF60438C) : Colors.grey),
+              ),
+              IconButton(
+                onPressed: () {
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                },
+                icon: Icon(Icons.person_outline, color: isLight ? Color(0xFF60438C) : Colors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );

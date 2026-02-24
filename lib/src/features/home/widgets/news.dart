@@ -24,7 +24,7 @@ class _NewsState extends State<News> {
               Text(
                 "Actualités",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).brightness == Brightness.light ? Color(0xFF180468) : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
                 ),

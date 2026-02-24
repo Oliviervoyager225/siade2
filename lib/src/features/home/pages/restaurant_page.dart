@@ -17,6 +17,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: const Color(0xFF050026),
         body: NestedScrollView(
           headerSliverBuilder: (context, _) => [
             SliverAppBar(

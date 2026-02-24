@@ -10,15 +10,23 @@ class MapsNavigationScreen extends StatefulWidget {
 class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    final primaryColor = isLight ? Color(0xFF60438C) : Colors.white;
+    final secondaryBg = isLight ? Colors.grey[200] : const Color(0xFF2C2C2E);
+    final scaffoldBg = isLight ? Colors.white : Colors.black;
+
     return Scaffold(
       body: Stack(
         children: [
           // Map Background
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/mapbg.png'),
                 fit: BoxFit.cover,
+                colorFilter: isLight 
+                    ? ColorFilter.mode(Colors.white.withOpacity(0.7), BlendMode.screen)
+                    : null,
               ),
             ),
           ),
@@ -29,22 +37,22 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             left: 0,
             right: 0,
             child: Container(
-              color: Colors.black,
+              color: scaffoldBg,
               child: SafeArea(
                 bottom: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Status bar time
+                    // Status bar time placeholder
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             '9:41',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: isLight ? Colors.black : Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
@@ -59,7 +67,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2C2C2E),
+                        color: secondaryBg,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -71,9 +79,9 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                               children: [
                                 GestureDetector(
                                   onTap: () => Navigator.pop(context),
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.arrow_back,
-                                    color: Colors.white,
+                                    color: isLight ? Colors.black : Colors.white,
                                     size: 22,
                                   ),
                                 ),
@@ -87,18 +95,18 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 12),
-                                const Expanded(
+                                Expanded(
                                   child: Text(
                                     'Sah analytics',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: isLight ? Colors.black : Colors.white,
                                       fontSize: 15,
                                     ),
                                   ),
                                 ),
-                                const Icon(
+                                Icon(
                                   Icons.more_vert,
-                                  color: Colors.white,
+                                  color: isLight ? Colors.black : Colors.white,
                                   size: 22,
                                 ),
                               ],
@@ -108,7 +116,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                           Container(
                             height: 1,
                             margin: const EdgeInsets.only(left: 46),
-                            color: Colors.white24,
+                            color: isLight ? Colors.black12 : Colors.white24,
                           ),
 
                           // Deuxième ligne - Arrivée
@@ -123,11 +131,11 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                                   size: 18,
                                 ),
                                 const SizedBox(width: 12),
-                                const Expanded(
+                                Expanded(
                                   child: Text(
                                     'Sah analytics',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: isLight ? Colors.black : Colors.white,
                                       fontSize: 15,
                                     ),
                                   ),
@@ -135,12 +143,12 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                                 Container(
                                   padding: const EdgeInsets.all(2),
                                   decoration: BoxDecoration(
-                                    color: Colors.white24,
+                                    color: isLight ? Colors.black12 : Colors.white24,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.white,
+                                  child: Icon(
+                                    Icons.swap_vert,
+                                    color: isLight ? Colors.black : Colors.white,
                                     size: 18,
                                   ),
                                 ),
@@ -158,17 +166,17 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 8),
                       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2C2C2E),
+                        color: secondaryBg,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildTransportOption(Icons.directions_car, '2 min', true),
-                          _buildTransportOption(Icons.train, '', false),
-                          _buildTransportOption(Icons.directions_walk, '3 min', false),
-                          _buildTransportOption(Icons.directions_bike, '', false),
-                          _buildTransportOption(Icons.pedal_bike, '2 min', false),
+                          _buildTransportOption(Icons.directions_car, '2 min', true, isLight),
+                          _buildTransportOption(Icons.train, '', false, isLight),
+                          _buildTransportOption(Icons.directions_walk, '3 min', false, isLight),
+                          _buildTransportOption(Icons.directions_bike, '', false, isLight),
+                          _buildTransportOption(Icons.pedal_bike, '2 min', false, isLight),
                         ],
                       ),
                     ),
@@ -180,7 +188,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             ),
           ),
 
-          // Route Info Box
+          // Route Info Box (Blue)
           Positioned(
             top: MediaQuery.of(context).size.height * 0.35,
             left: 16,
@@ -222,7 +230,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isLight ? Colors.white : const Color(0xFF2C2C2E),
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
@@ -232,10 +240,10 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                   ),
                 ],
               ),
-              child: const Text(
+              child: Text(
                 'Safe, pedestrian lighting',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: isLight ? Colors.black : Colors.white,
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                 ),
@@ -243,14 +251,48 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             ),
           ),
 
-          // Unsafe label
+          // Unsafe label (Info Box)
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.52,
-            left: 130,
+            top: MediaQuery.of(context).size.height * 0.48,
+            right: 16,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: isLight ? Colors.white : Colors.white,
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.warning, color: Colors.red, size: 14),
+                  SizedBox(width: 6),
+                  Text(
+                    '2 min',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.54,
+            right: 40,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isLight ? Colors.white : const Color(0xFF2C2C2E),
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
@@ -260,20 +302,13 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                   ),
                 ],
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Icon(Icons.warning, color: Colors.orange, size: 13),
-                  SizedBox(width: 4),
-                  Text(
-                    'Unsafe, 2 prev. incidents',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
+              child: Text(
+                'Unsafe, 2 prev. incidents',
+                style: TextStyle(
+                  color: isLight ? Colors.black : Colors.white,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -284,9 +319,9 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             top: MediaQuery.of(context).size.height * 0.28,
             child: Column(
               children: [
-                _buildRoundButton(Icons.layers_outlined),
+                _buildRoundButton(Icons.layers_outlined, isLight),
                 const SizedBox(height: 12),
-                _buildRoundButton(Icons.search),
+                _buildRoundButton(Icons.search, isLight),
               ],
             ),
           ),
@@ -294,8 +329,8 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
           // Current location button
           Positioned(
             right: 16,
-            bottom: 200,
-            child: _buildRoundButton(Icons.my_location),
+            bottom: 220,
+            child: _buildRoundButton(Icons.my_location, isLight),
           ),
 
           // Bottom Sheet
@@ -304,12 +339,19 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             left: 0,
             right: 0,
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFF1C1C1E),
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: scaffoldBg,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: Offset(0, -2),
+                  ),
+                ],
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -320,7 +362,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                     width: 36,
                     height: 5,
                     decoration: BoxDecoration(
-                      color: Colors.white24,
+                      color: isLight ? Colors.black12 : Colors.white24,
                       borderRadius: BorderRadius.circular(3),
                     ),
                   ),
@@ -334,21 +376,21 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
-                          children: const [
+                          children: [
                             Text(
                               '3 min',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isLight ? Colors.black : Colors.white,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: -0.5,
                               ),
                             ),
-                            SizedBox(width: 6),
+                            const SizedBox(width: 6),
                             Text(
                               '(0.1 mi)',
                               style: TextStyle(
-                                color: Colors.white60,
+                                color: isLight ? Colors.black54 : Colors.white60,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -356,10 +398,10 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                           ],
                         ),
                         const SizedBox(height: 4),
-                        const Text(
+                        Text(
                           'Lorem ipsum is placeholder',
                           style: TextStyle(
-                            color: Colors.white60,
+                            color: isLight ? Colors.black54 : Colors.white60,
                             fontSize: 15,
                           ),
                         ),
@@ -409,7 +451,7 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
                     height: MediaQuery.of(context).padding.bottom > 0 
                         ? MediaQuery.of(context).padding.bottom 
                         : 20,
-                    color: const Color(0xFF1C1C1E),
+                    color: scaffoldBg,
                   ),
                 ],
               ),
@@ -420,11 +462,13 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
     );
   }
 
-  Widget _buildTransportOption(IconData icon, String time, bool isSelected) {
+  Widget _buildTransportOption(IconData icon, String time, bool isSelected, bool isLight) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.white : Colors.transparent,
+        color: isSelected 
+            ? (isLight ? Colors.black : Colors.white) 
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -432,7 +476,9 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
         children: [
           Icon(
             icon,
-            color: isSelected ? Colors.black : Colors.white70,
+            color: isSelected 
+                ? (isLight ? Colors.white : Colors.black) 
+                : (isLight ? Colors.black54 : Colors.white70),
             size: 18,
           ),
           if (time.isNotEmpty) ...[
@@ -440,7 +486,9 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
             Text(
               time,
               style: TextStyle(
-                color: isSelected ? Colors.black : Colors.white70,
+                color: isSelected 
+                    ? (isLight ? Colors.white : Colors.black) 
+                    : (isLight ? Colors.black54 : Colors.white70),
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
@@ -451,12 +499,12 @@ class _MapsNavigationScreenState extends State<MapsNavigationScreen> {
     );
   }
 
-  Widget _buildRoundButton(IconData icon) {
+  Widget _buildRoundButton(IconData icon, bool isLight) {
     return Container(
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isLight ? Colors.white : Colors.white,
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(

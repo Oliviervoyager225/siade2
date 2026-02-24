@@ -19,7 +19,9 @@ class _AllSpeakersState extends State<AllSpeakers> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : null,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -38,7 +40,7 @@ class _AllSpeakersState extends State<AllSpeakers> {
                     width: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: isLight ? Color(0xFF60438C) : Colors.black, // Purple button in light mode
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -48,7 +50,9 @@ class _AllSpeakersState extends State<AllSpeakers> {
                   ),
                 ),
 
-                Assets.images.logo.image(height: 20),
+                isLight 
+                    ? Image.asset('assets/images/logo23.png', height: 20) // Manually load asset to bypass gen issue
+                    : Assets.images.logo.image(height: 20),
               ],
             ),
 
@@ -58,7 +62,9 @@ class _AllSpeakersState extends State<AllSpeakers> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 gradient: LinearGradient(
-                  colors: [Color(0xff305481), Color(0xff08082D)],
+                  colors: isLight 
+                      ? [Color(0xFF60438C), Colors.white] // Purple to white gradient
+                      : [Color(0xff305481), Color(0xff08082D)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),

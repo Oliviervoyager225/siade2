@@ -23,7 +23,9 @@ class _AllProgramsState extends State<AllPrograms> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : null,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -42,7 +44,9 @@ class _AllProgramsState extends State<AllPrograms> {
                     width: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: isLight 
+                          ? Color(0xFF60438C).withOpacity(0.3)
+                          : Colors.black,
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -52,7 +56,9 @@ class _AllProgramsState extends State<AllPrograms> {
                   ),
                 ),
 
-                Assets.images.logo.image(height: 20),
+                isLight 
+                    ? Image.asset('assets/images/logo23.png', height: 20)
+                    : Assets.images.logo.image(height: 20),
               ],
             ),
 
@@ -80,23 +86,30 @@ class _AllProgramsState extends State<AllPrograms> {
                       height: 45,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.transparent : Colors.white,
+                          color: isSelected 
+                              ? Colors.transparent 
+                              : (isLight ? Color(0xFF60438C) : Colors.white),
                         ),
                         borderRadius: BorderRadius.circular(30),
                         gradient: isSelected
                             ? LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [
-                                  AppColors.primaryBlue,
-                                  AppColors.primaryRed,
-                                ],
+                                colors: isLight 
+                                    ? [Color(0xFF60438C), Color(0xFF60438C)] // Solid purple for selected in light mode
+                                    : [
+                                        AppColors.primaryBlue,
+                                        AppColors.primaryRed,
+                                      ],
                               )
                             : null,
                       ),
                       child: Text(
                         selectedCategory.name,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: isSelected
+                                ? Colors.white
+                                : (isLight ? Color(0xFF60438C) : Colors.white)),
                       ),
                     ),
                   );

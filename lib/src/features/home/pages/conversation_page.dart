@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:siade2/src/commons/data/models/sms.dart';
 import 'package:siade2/src/theme/colors/app_colors.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../gen/assets.gen.dart';
 
@@ -11,8 +12,9 @@ class ConversationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: const Color(0xFF050026),
+      backgroundColor: isLight ? Color(0xFFF7F7F7) : const Color(0xFF050026),
       body: Column(
         children: [
           Padding(
@@ -33,7 +35,8 @@ class ConversationPage extends StatelessWidget {
                     width: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.greySecondary),
+                      color: isLight ? Color(0xFF60438C).withOpacity(0.8) : null,
+                      border: Border.all(color: isLight ? Colors.transparent : AppColors.greySecondary),
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -52,8 +55,9 @@ class ConversationPage extends StatelessWidget {
                     Text(
                       message.name,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isLight ? Color(0xFF60438C) : Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
                       ),
                     ),
                   ],
@@ -66,7 +70,8 @@ class ConversationPage extends StatelessWidget {
                     width: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.greySecondary),
+                      color: isLight ? Color(0xFF60438C).withOpacity(0.8) : null,
+                      border: Border.all(color: isLight ? Colors.transparent : AppColors.greySecondary),
                     ),
                     child: Icon(Icons.more_vert, color: Colors.white, size: 16),
                   ),
@@ -81,33 +86,39 @@ class ConversationPage extends StatelessWidget {
               children: [
                 _buildDateLabel('SEP 14, 2021'),
                 _buildMessageBubble(
+                  context: context,
                   text: 'Lorem ipsum is placeholder',
                   isMe: false,
                   time: '8:27 PM',
                 ),
                 _buildMessageBubble(
+                  context: context,
                   text: 'text commonly used in the',
                   isMe: true,
                   time: '',
                 ),
                 _buildMessageBubble(
+                  context: context,
                   text: 'text commonly used in the',
                   isMe: true,
                   time: '8:56 PM',
                 ),
                 _buildMessageBubble(
+                  context: context,
                   text: 'text commonly used in the',
                   isMe: false,
                   time: '9:01 PM',
                 ),
-                _buildMessageBubble(text: '❤️', isMe: true, time: '9:04 PM'),
+                _buildMessageBubble(context: context, text: '❤️', isMe: true, time: '9:04 PM'),
                 _buildDateLabel('TODAY'),
                 _buildMessageBubble(
+                  context: context,
                   text: 'text commonly used in the',
                   isMe: false,
                   time: '11:53 AM',
                 ),
                 _buildMessageBubble(
+                  context: context,
                   text: 'text commonly',
                   isMe: true,
                   time: '12:14 PM',
@@ -119,22 +130,22 @@ class ConversationPage extends StatelessWidget {
           // --- Input bar ---
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            color: Colors.black,
+            color: isLight ? Color(0xFFCDCDCD) : Colors.black,
             child: SafeArea(
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.darkGrey,
+                        color: isLight ? Colors.white : AppColors.darkGrey,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: isLight ? Color(0xFF60438C) : Colors.white),
                         decoration: InputDecoration(
                           hintText: 'Type your message here...',
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(color: isLight ? Color(0xFF60438C).withOpacity(0.5) : Colors.grey),
                           border: InputBorder.none,
                           suffixIcon: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,24 +153,28 @@ class ConversationPage extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.add, color: AppColors.greySecondary,),
+                                icon: Icon(Icons.add, color: isLight ? Color(0xFF60438C) : AppColors.greySecondary,),
                               ),
                               Container(
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    colors: [
-                                      AppColors.primaryBlue,
-                                      AppColors.primaryRed,
-                                    ],
+                                    colors: isLight 
+                                        ? [Color(0xFF60438C).withOpacity(0.7), Color(0xFF60438C)]
+                                        : [
+                                            AppColors.primaryBlue,
+                                            AppColors.primaryRed,
+                                          ],
                                   ),
                                   shape: BoxShape.circle,
                                 ),
                                 padding: EdgeInsets.all(10),
-                                child: Image(
-                                  image: AssetImage("assets/images/send.png"),
-                                ),
+                                child: isLight 
+                                  ? Icon(Icons.send, size: 16, color: Colors.white)
+                                  : Image(
+                                    image: AssetImage("assets/images/send.png"),
+                                  ),
                               ),
                             ],
                           ),
@@ -167,15 +182,6 @@ class ConversationPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // const SizedBox(width: 8),
-                  // Container(
-                  //   decoration: const BoxDecoration(
-                  //     color: Color(0xFF5311D8),
-                  //     shape: BoxShape.circle,
-                  //   ),
-                  //   padding: const EdgeInsets.all(10),
-                  //   child: const Icon(Icons.send, color: Colors.white),
-                  // ),
                 ],
               ),
             ),
@@ -202,10 +208,25 @@ class ConversationPage extends StatelessWidget {
   }
 
   Widget _buildMessageBubble({
+    required BuildContext context,
     required String text,
     required bool isMe,
     required String time,
   }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    
+    // Light mode colors
+    final lightMeColor = Colors.black;
+    final lightOtherColor = Color(0xFF60438C);
+    
+    // Dark mode colors (existing)
+    final darkMeColor = const Color(0xFF167BF7);
+    final darkOtherColor = const Color(0xFF2A2940);
+
+    final bubbleColor = isLight 
+        ? (isMe ? lightMeColor : lightOtherColor)
+        : (isMe ? darkMeColor : darkOtherColor);
+
     return Column(
       crossAxisAlignment: isMe
           ? CrossAxisAlignment.end
@@ -215,7 +236,7 @@ class ConversationPage extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 4),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: isMe ? const Color(0xFF167BF7) : const Color(0xFF2A2940),
+            color: bubbleColor,
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(16),
               topRight: const Radius.circular(16),
@@ -236,7 +257,7 @@ class ConversationPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8, right: 8, bottom: 6),
           child: Text(
             time,
-            style: const TextStyle(color: Colors.grey, fontSize: 11),
+            style: TextStyle(color: isLight ? Color(0xFF60438C).withOpacity(0.7) : Colors.grey, fontSize: 11),
           ),
         ),
       ],

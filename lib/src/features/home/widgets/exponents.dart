@@ -28,12 +28,13 @@ class _ExponentsState extends State<Exponents> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Stack(
       children: [
         Container(
           width: double.infinity,
           padding: const EdgeInsets.only(top: 10.0, right: 85.0, bottom: 15.0),
-          decoration: BoxDecoration(color: AppColors.exponentBlue),
+          decoration: BoxDecoration(color: isLight ? Colors.transparent : AppColors.exponentBlue),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,7 +44,7 @@ class _ExponentsState extends State<Exponents> {
                   "Exposants",
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: isLight ? Color(0xFF180468) : Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16.sp,
                   ),
@@ -88,7 +89,7 @@ class _ExponentsState extends State<Exponents> {
             height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.w),
-              color: AppColors.primaryRed,
+              color: isLight ? Color(0xFF60438C) : AppColors.primaryRed,
             ),
             child: GestureDetector(
               onTap: () {

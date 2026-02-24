@@ -13,6 +13,7 @@ class Speakers extends StatefulWidget {
 class _SpeakersState extends State<Speakers> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -23,7 +24,9 @@ class _SpeakersState extends State<Speakers> {
               Text(
                 "Speakers",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Color(0xFF180468)
+                      : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
                 ),
@@ -59,7 +62,6 @@ class _SpeakersState extends State<Speakers> {
                     Container(
                       width: 149,
                       height: 149,
-                      padding: EdgeInsetsGeometry.only(left: 16, bottom: 6),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         image: DecorationImage(
@@ -75,9 +77,37 @@ class _SpeakersState extends State<Speakers> {
                           ),
                         ],
                       ),
+                    ),
+                    
+                    // Gradient Overlay (Purple for Light Mode, Dark for Dark Mode or user preference)
+                    // User asked for "60438C" (Purple) filter to help visibility
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: 60, // Height to cover names
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              (isLight ? Color(0xFF60438C) : Colors.black).withOpacity(0.0),
+                              (isLight ? Color(0xFF60438C) : Colors.black).withOpacity(0.8),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Text Content (On Top)
+                    Positioned(
+                      bottom: 6,
+                      left: 16,
+                      right: 16,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
                             speaker.name,
@@ -90,31 +120,15 @@ class _SpeakersState extends State<Speakers> {
                           Text(
                             speaker.job,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.white, // Keep white text as it's now on a dark/purple background
                               fontSize: 14.sp,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Positioned.fill(
-                      child: Container(
-                        height: 30, // Hauteur de l'ombre
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withValues(alpha: 0.5),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Gradient overlay removed as per user request for both modes
+                    // if (isLight) ...
                   ],
                 );
               },

@@ -23,7 +23,9 @@ class _AllExponentsState extends State<AllExponents> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : Colors.black,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -42,7 +44,7 @@ class _AllExponentsState extends State<AllExponents> {
                     width: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: isLight ? Color(0xFF60438C) : Colors.black,
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -52,7 +54,9 @@ class _AllExponentsState extends State<AllExponents> {
                   ),
                 ),
 
-                Assets.images.logo.image(height: 20),
+                isLight
+                    ? Image.asset('assets/images/logo23.png', height: 20)
+                    : Assets.images.logo.image(height: 20),
               ],
             ),
 
@@ -62,7 +66,9 @@ class _AllExponentsState extends State<AllExponents> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 gradient: LinearGradient(
-                  colors: [Color(0xff305481), Color(0xff08082D)],
+                  colors: isLight
+                      ? [Color(0xFF60438C), Colors.white]
+                      : [Color(0xff305481), Color(0xff08082D)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -113,23 +119,35 @@ class _AllExponentsState extends State<AllExponents> {
                       height: 45,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.transparent : Colors.white,
+                          color: isSelected
+                              ? Colors.transparent
+                              : isLight
+                                  ? Color(0xFF60438C)
+                                  : Colors.white,
                         ),
                         borderRadius: BorderRadius.circular(30),
                         gradient: isSelected
                             ? LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [
-                                  AppColors.primaryBlue,
-                                  AppColors.primaryRed,
-                                ],
+                                colors: isLight
+                                    ? [Color(0xFF60438C), Color(0xFF60438C)] // Solid Purple for selected in Light Mode? Or Gradient? Image 1 shows nice purple. Use Gradient to be safe or Solid.
+                                    : [
+                                        AppColors.primaryBlue,
+                                        AppColors.primaryRed,
+                                      ],
                               )
                             : null,
                       ),
                       child: Text(
                         selectedCategory.name,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: isSelected
+                              ? Colors.white
+                              : isLight
+                                  ? Colors.black // Dark text for unselected in Light Mode
+                                  : Colors.white,
+                        ),
                       ),
                     ),
                   );
@@ -145,7 +163,7 @@ class _AllExponentsState extends State<AllExponents> {
                     crossAxisCount: crossAxisCount,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.53, // Adjusted for longer cards
                   ),
                   itemCount: widget.exponents.length,
                   itemBuilder: (context, index) {

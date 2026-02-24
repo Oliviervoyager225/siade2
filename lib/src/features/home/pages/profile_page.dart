@@ -39,19 +39,20 @@ class _ProfilePageState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : null,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverToBoxAdapter(
             child: Stack(
+              clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                Positioned(
-                  child: Container(
-                    width: 100.w,
-                    height: 300,
-                    color: Colors.transparent,
-                  ),
+                Container(
+                  width: 100.w,
+                  height: bannerHeight + 100,
+                  color: Colors.transparent,
                 ),
 
                 Positioned(
@@ -63,10 +64,6 @@ class _ProfilePageState extends State<ProfilePage>
                       image: DecorationImage(
                         image: AssetImage("assets/images/profile_banner.jpg"),
                         fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                          Colors.black.withValues(alpha: 0.6),
-                          BlendMode.color,
-                        ),
                       ),
                     ),
                   ),
@@ -74,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage>
 
                 Positioned(
                   left: 30,
-                  top: 30,
+                  top: 50,
                   child: GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
@@ -96,60 +93,49 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
 
                 Positioned(
-                  top: topBox,
-                  child: Container(
-                    height: photoProfileBoxSize,
-                    width: photoProfileBoxSize,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [AppColors.primaryBlue, AppColors.primaryRed],
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        photoProfileBoxSize / 2,
-                      ),
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: topPhotProfile,
-                  child: Container(
-                    height: photoProfileSize,
-                    width: photoProfileSize,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(photoProfileSize / 2),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/photo_profile.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: 250,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 20.w,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: AppColors.elevatedButtonBlue,
-                        border: Border.all(color: AppColors.greySecondary),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13.5.sp,
+                  top: bannerHeight - 60,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0xFF07026F), Color(0xFFA01E38)],
+                          ),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 3),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(60),
+                          child: Image.asset(
+                            "assets/images/photo_profile.jpg",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
+                      Transform.translate(
+                        offset: Offset(0, 10),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            'Edit Profile',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -157,56 +143,49 @@ class _ProfilePageState extends State<ProfilePage>
           ),
 
           SliverToBoxAdapter(
-            child: Stack(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Fatemate',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                   Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Fatemate',
+                        style: TextStyle(
+                          color: isLight ? Color(0xFF60438C) : Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp,
                         ),
-
-                        Text(
-                          'Etudiante',
-                          style: TextStyle(
-                            color: AppColors.greySecondary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      Text(
+                        'Etudiante',
+                        style: TextStyle(
+                          color: isLight ? Colors.black54 : AppColors.greySecondary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                Positioned(
-                  right: 30.w,
-                  top: 2,
-                  child: GestureDetector(
-                    onTap: () {},
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    right: 25.w,
                     child: Container(
-                      height: 32,
-                      width: 32,
+                      padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.greySecondary),
-                        shape: BoxShape.circle,
                         color: Colors.black,
+                        shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        Icons.mail_outline_outlined,
+                        Icons.mail_outline,
                         color: Colors.white,
-                        size: 16,
+                        size: 20,
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
@@ -217,19 +196,18 @@ class _ProfilePageState extends State<ProfilePage>
               margin: EdgeInsets.symmetric(horizontal: 25.0),
               padding: EdgeInsets.all(20.0),
               width: double.infinity,
-              height: 15.h,
               decoration: BoxDecoration(
-                color: AppColors.profileQrBox,
-                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  colors: [Color(0xFF60438C), Color(0xFF60438C)],
+                ),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 10,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         'Des profils',
@@ -238,61 +216,49 @@ class _ProfilePageState extends State<ProfilePage>
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
+                      SizedBox(height: 10),
                       SizedBox(
                         height: 35,
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          separatorBuilder: (_, _) => SizedBox(),
-                          itemCount: profiles.length,
-                          itemBuilder: (context, index) {
-                            final image = profiles[index];
-
-                            return Transform.translate(
-                              offset: Offset(-15.0 * index, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(profiles.length, (index) {
+                            return Align(
+                              widthFactor: 0.7,
                               child: CircleAvatar(
-                                backgroundImage: AssetImage(image),
+                                radius: 18,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 16,
+                                  backgroundImage: AssetImage(profiles[index]),
+                                ),
                               ),
                             );
-                          },
+                          }),
                         ),
                       ),
                     ],
                   ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: AppColors.qrBox,
-                          borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileInfosPage(),
                         ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileInfosPage(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          height: 72,
-                          width: 72,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.white, width: 7),
-                          ),
-                          child: Image.asset("assets/images/qr_code.png"),
-                        ),
+                      child: Image.asset(
+                        "assets/images/qr_code.png",
+                        height: 60,
+                        width: 60,
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -302,40 +268,38 @@ class _ProfilePageState extends State<ProfilePage>
           SliverToBoxAdapter(child: SizedBox(height: 30)),
 
           SliverPersistentHeader(
-            // pinned: true,
+            pinned: true,
             delegate: SliverTabBarDelegate(
               TabBar(
                 controller: _tabController,
                 tabs: [
                   Tab(text: 'Posts'),
                   Tab(text: 'Mes activités'),
-                  Tab(text: 'Sessions suivies'),
+                  Tab(text: 'sessions suivies'),
                 ],
-                labelColor: AppColors.primarySocialBlue,
-                unselectedLabelColor: Colors.white,
-                indicator: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: AppColors.primarySocialBlue,
-                      width: 3,
-                    ),
-                  ),
-                ),
+                labelColor: isLight ? Color(0xFF60438C) : AppColors.primarySocialBlue,
+                unselectedLabelColor: isLight ? Colors.black45 : Colors.white,
+                indicatorColor: isLight ? Color(0xFF60438C) : AppColors.primarySocialBlue,
+                indicatorWeight: 3,
                 labelStyle: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              isLight: isLight,
             ),
           ),
         ],
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            SingleChildScrollView(child: Feed(posts: posts)),
-            Text("Mes activités", style: TextStyle(color: Colors.white)),
-            Text("Sessions suivies", style: TextStyle(color: Colors.white)),
-          ],
+        body: Container(
+          color: isLight ? Colors.white : null,
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              SingleChildScrollView(child: Feed(posts: posts)),
+              Center(child: Text("Mes activités", style: TextStyle(color: isLight ? Colors.black : Colors.white))),
+              Center(child: Text("Sessions suivies", style: TextStyle(color: isLight ? Colors.black : Colors.white))),
+            ],
+          ),
         ),
       ),
     );
@@ -351,8 +315,9 @@ List<String> profiles = [
 
 class SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
+  final bool isLight;
 
-  SliverTabBarDelegate(this.tabBar);
+  SliverTabBarDelegate(this.tabBar, {required this.isLight});
 
   @override
   double get minExtent => tabBar.preferredSize.height;
@@ -367,7 +332,7 @@ class SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     return Container(
-      // color: Colors.white,
+      color: isLight ? Colors.white : Colors.black,
       child: tabBar,
     );
   }

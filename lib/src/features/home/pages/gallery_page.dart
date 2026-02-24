@@ -14,9 +14,11 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: isLight ? Colors.white : null, // Dark mode falls back to theme or default
         body: Padding(
           padding: const EdgeInsets.all(30.0),
           child: NestedScrollView(
@@ -34,7 +36,9 @@ class _GalleryPageState extends State<GalleryPage> {
                     width: 16,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: isLight 
+                          ? Color(0xFF60438C).withOpacity(0.3)
+                          : Colors.black,
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -43,7 +47,11 @@ class _GalleryPageState extends State<GalleryPage> {
                     ),
                   ),
                 ),
-                actions: [Assets.images.logo.image(height: 20)],
+                actions: [
+                  isLight 
+                      ? Image.asset('assets/images/logo23.png', height: 20)
+                      : Assets.images.logo.image(height: 20)
+                ],
               ),
               SliverToBoxAdapter(
                 child: Column(
@@ -57,7 +65,9 @@ class _GalleryPageState extends State<GalleryPage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.0),
                         gradient: LinearGradient(
-                          colors: [Color(0xff305481), Color(0xff08082D)],
+                          colors: isLight
+                              ? [Color(0xFF60438C), Color(0xFF9E87CE)] // Purple gradient for light mode
+                              : [Color(0xff305481), Color(0xff08082D)],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),
@@ -92,7 +102,10 @@ class _GalleryPageState extends State<GalleryPage> {
                       height: 6.h,
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.5),
+                        color: isLight 
+                            ? Colors.transparent 
+                            : Colors.black.withValues(alpha: 0.5),
+                        border: isLight ? Border.all(color: Color(0xFF60438C)) : null,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Container(
@@ -101,17 +114,19 @@ class _GalleryPageState extends State<GalleryPage> {
                           indicatorSize: TabBarIndicatorSize.tab,
                           indicator: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            gradient: RadialGradient(
-                              radius: 2,
-                              colors: [
-                                Color(0xff2737CF).withValues(alpha: 0.4),
-                                Color(0xff6562FB).withValues(alpha: 1),
-                              ],
-                            ),
+                            gradient: isLight
+                                ? LinearGradient(colors: [Color(0xFF60438C), Color(0xFF60438C)]) // Solid purple for selected tab in light mode
+                                : RadialGradient(
+                                    radius: 2,
+                                    colors: [
+                                      Color(0xff2737CF).withValues(alpha: 0.4),
+                                      Color(0xff6562FB).withValues(alpha: 1),
+                                    ],
+                                  ),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           labelColor: Colors.white,
-                          unselectedLabelColor: Colors.grey,
+                          unselectedLabelColor: isLight ? Color(0xFF60438C) : Colors.grey,
                           tabs: const [
                             Tab(text: 'Images'),
                             Tab(text: 'Vidéos'),

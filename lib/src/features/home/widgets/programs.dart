@@ -13,6 +13,7 @@ class Programs extends StatefulWidget {
 class _ProgramsState extends State<Programs> {
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -23,7 +24,7 @@ class _ProgramsState extends State<Programs> {
               Text(
                 "Programmes",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).brightness == Brightness.light ? Color(0xFF180468) : Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
                 ),
@@ -92,6 +93,7 @@ class _ProgramsState extends State<Programs> {
                         ],
                       ),
                     ),
+                    if (!isLight) // Hide dark filter in light mode
                     Positioned.fill(
                       child: Container(
                         height: 30, // Hauteur de l'ombre
@@ -120,10 +122,9 @@ class _ProgramsState extends State<Programs> {
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [
-                              AppColors.primaryBlue,
-                              AppColors.primaryRed,
-                            ],
+                            colors: isLight 
+                                ? [Color(0xFF60438C), Color(0xFFE7E7E7)]
+                                : [AppColors.primaryBlue, AppColors.primaryRed],
                           ),
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -141,7 +142,7 @@ class _ProgramsState extends State<Programs> {
                               day,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: isLight ? Color(0xFF60438C) : Colors.white, // Dark text on light grey for visibility
                                 fontSize: 20.sp,
                               ),
                             ),

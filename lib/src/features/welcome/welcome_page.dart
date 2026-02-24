@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:siade2/l10n/app_localizations.dart';
 import 'package:siade2/src/features/login/pages/login.dart';
 import 'package:sizer/sizer.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -19,43 +22,17 @@ class WelcomePage extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              // Image centrale avec cercle gradient
+              // Image centrale (Positionnement unifié avec onboarding)
               Positioned(
-                top: 12.h,
+                top: 8.h,
                 left: 0,
                 right: 0,
-                child: Center(
-                  child: Container(
-                    width: 65.w,
-                    height: 65.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFFFF1493), // Rose vif
-                          Color(0xFF00CED1), // Cyan
-                        ],
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(3.5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/threeavatar.png',
-                            fit: BoxFit.contain,
-                            width: double.infinity,
-                            height: double.infinity,
-                          ),
-                        ),
-                      ),
-                    ),
+                child: Container(
+                  height: 40.h,
+                  child: Image.asset(
+                    'assets/images/Avatar 3.png',
+                    fit: BoxFit.contain,
+                    alignment: Alignment.center,
                   ),
                 ),
               ),
@@ -71,11 +48,11 @@ class WelcomePage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Prêt à commencer\nl'aventure ?",
+                        l10n.readyToStart,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF6A4C93),
-                          fontSize: 26.sp,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                           height: 1.3,
                         ),
@@ -84,11 +61,11 @@ class WelcomePage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 4.w),
                         child: Text(
-                          "Rejoignez SIADE 2025 dès maintenant",
+                          l10n.joinSiadeNow,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF9E9E9E),
-                            fontSize: 15.sp,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ),
@@ -130,10 +107,10 @@ class WelcomePage extends StatelessWidget {
                                     colors: [
                                       Color(0xFFFF1493),
                                       Color(0xFF6A4C93),
-                                    ],
+                                      ],
                                   ).createShader(bounds),
                                   child: Text(
-                                    'Sign up',
+                                    l10n.signUp,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -150,7 +127,7 @@ class WelcomePage extends StatelessWidget {
 
                       SizedBox(height: 6.h),
                       Text(
-                        "COPYRIGHT SAHANALYTICS",
+                        l10n.copyright,
                         style: TextStyle(
                           color: Color(0xFF6A4C93).withOpacity(0.6),
                           fontSize: 12.sp,

@@ -15,9 +15,10 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final _searchTextController = TextEditingController();
 
-  @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
+      backgroundColor: isLight ? Colors.white : null,
       body: SingleChildScrollView(
         child: Column(
           spacing: 10,
@@ -37,7 +38,8 @@ class _ChatPageState extends State<ChatPage> {
                           height: 32,
                           width: 32,
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.darkGrey, width: 2),
+                            color: isLight ? Color(0xFF60438C).withOpacity(0.8) : null,
+                            border: Border.all(color: isLight ? Colors.transparent : AppColors.darkGrey, width: 2),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -48,7 +50,12 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                       ),
         
-                      Text('MESSAGES', style: TextStyle(color: Colors.white)),
+                      Text(
+                        'MESSAGES', 
+                        style: TextStyle(
+                          color: isLight ? Color(0xFF60438C).withOpacity(0.6) : Colors.white
+                        )
+                      ),
         
                       GestureDetector(
                         onTap: () {},
@@ -56,8 +63,9 @@ class _ChatPageState extends State<ChatPage> {
                           height: 32,
                           width: 32,
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.darkGrey, width: 2),
-                            borderRadius: BorderRadius.circular(20),
+                             color: isLight ? Color(0xFF60438C).withOpacity(0.8) : null,
+                            border: Border.all(color: isLight ? Colors.transparent : AppColors.darkGrey, width: 2),
+                            shape: BoxShape.circle,
                           ),
                           child: Icon(
                             Icons.settings,
@@ -71,14 +79,16 @@ class _ChatPageState extends State<ChatPage> {
         
                   TextField(
                     controller: _searchTextController,
+                    style: TextStyle(color: isLight ? Colors.white : Colors.white),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.w),
+                        borderSide: BorderSide.none,
                       ),
                       hintText: 'Rechercher...',
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: Icon(Icons.search, color: isLight ? Colors.white : null),
                       hintStyle: TextStyle(color: Colors.white),
-                      fillColor: AppColors.darkGrey,
+                      fillColor: isLight ? Color(0xFF60438C).withOpacity(0.8) : AppColors.darkGrey,
                       filled: true,
                     ),
                   ),
@@ -115,7 +125,7 @@ class _ChatPageState extends State<ChatPage> {
         
                       Text(
                         currentStatus.name,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: isLight ? Color(0xFF60438C) : Colors.white),
                       ),
                     ],
                   );
@@ -153,7 +163,7 @@ class _ChatPageState extends State<ChatPage> {
                     title: Text(
                       currentMessage.name,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isLight ? Color(0xFF60438C) : Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -162,12 +172,12 @@ class _ChatPageState extends State<ChatPage> {
                           ? '${currentMessage.message.substring(0, 30)}...'
                           : currentMessage.message,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isLight ? Color(0xFF60438C).withOpacity(0.6) : Colors.white,
                       ),
                     ),
                     trailing: Text(
                       currentMessage.convertSendDate(),
-                      style: TextStyle(color: AppColors.greySecondary),
+                      style: TextStyle(color: isLight ? Color(0xFF60438C) : AppColors.greySecondary),
                     ),
                   ),
                 );

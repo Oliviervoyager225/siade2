@@ -112,7 +112,9 @@ class _ProgramItemState extends State<ProgramItem> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [AppColors.primaryBlue, AppColors.primaryRed],
+                  colors: Theme.of(context).brightness == Brightness.light
+                      ? [Color(0xFF60438C), Color(0xFF9E87CE)]
+                      : [AppColors.primaryBlue, AppColors.primaryRed],
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),

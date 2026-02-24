@@ -43,6 +43,9 @@ class _PostsState extends State<Posts> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    final textColor = isLight ? Color(0xFF60438C) : Colors.white; // Dynamic text/icon color updated to match spec
+
     return Column(
       spacing: 10,
       children: [
@@ -54,7 +57,7 @@ class _PostsState extends State<Posts> {
           title: Text(
             post.namePoster,
             style: TextStyle(
-              color: Colors.white,
+              color: textColor,
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -63,17 +66,25 @@ class _PostsState extends State<Posts> {
             post.elapsedTime,
             style: TextStyle(color: Colors.grey, fontSize: 13.sp),
           ),
-          trailing: IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          trailing: IconButton(
+            onPressed: () {}, 
+            icon: Icon(Icons.more_vert, color: textColor)
+          ),
         ),
 
-        
         post.postLegend.isNotEmpty ?
-        Text(
-          post.postLegend,
-          style: TextStyle(
-            color: Colors.white,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0), // Align text with content
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              post.postLegend,
+              style: TextStyle(
+                color: textColor,
+              ),
+            ),
           ),
-        ): SizedBox(),
+        ) : SizedBox(),
 
         images.isNotEmpty
             ? Column(
@@ -164,13 +175,13 @@ class _PostsState extends State<Posts> {
                     },
                     icon: Icon(
                       hasLiked ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
-                      color: Colors.white,
+                      color: textColor,
                     ),
                   ),
                   post.likes > 0
                       ? Text(
                           '${post.likes}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: textColor),
                         )
                       : SizedBox(),
 
@@ -180,13 +191,13 @@ class _PostsState extends State<Posts> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.sms_outlined,
-                      color: Colors.white,
+                      color: textColor,
                     ),
                   ),
                   post.commentsNumber > 0
                       ? Text(
                           '${post.commentsNumber}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: textColor),
                         )
                       : SizedBox(),
                   
@@ -196,13 +207,13 @@ class _PostsState extends State<Posts> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.file_upload_outlined,
-                      color: Colors.white,
+                      color: textColor,
                     ),
                   ),
                   post.shares > 0
                       ? Text(
                           '${post.shares}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: textColor),
                         )
                       : SizedBox(),
                 ],
@@ -218,7 +229,7 @@ class _PostsState extends State<Posts> {
               },
               icon: Icon(
                 isSaved ? Icons.bookmark : Icons.bookmark_outline_outlined,
-                color: Colors.white,
+                color: textColor,
               ),
             ),
           ],

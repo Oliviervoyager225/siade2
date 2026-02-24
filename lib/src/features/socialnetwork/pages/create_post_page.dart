@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siade2/src/theme/theme.dart';
 import 'package:siade2/src/features/socialnetwork/pages/page.dart';
 import 'package:siade2/src/features/socialnetwork/widgets/page.dart';
 
@@ -12,6 +13,7 @@ class CreatePostScreen extends StatefulWidget {
 class _CreatePostScreenState extends State<CreatePostScreen> {
  
   final FocusNode _focusNode = FocusNode();
+  bool isExpanded = false;
 
   @override
   void initState() {
@@ -30,10 +32,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
     return Scaffold(
-      backgroundColor: Color(0xFF0A0E27),
+      backgroundColor: isLight ? Colors.white : Color(0xFF0A0E27),
       appBar: AppBar(
-        backgroundColor: Color(0xFF0A0E27),
+        backgroundColor: isLight ? Colors.white : Color(0xFF0A0E27),
         elevation: 0,
         leading: TextButton(
           onPressed: () {
@@ -41,14 +44,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           },
           child: Text(
             'Annuler',
-            style: TextStyle(color: Colors.blue, fontSize: 14),
+            style: TextStyle(
+                color: isLight ? AppColors.primaryBlue : Colors.blue,
+                fontSize: 14),
           ),
         ),
         leadingWidth: 80,
         title: Text(
           'CRÉER',
           style: TextStyle(
-            color: Colors.white,
+            color: isLight ? Color(0xFF60438C) : Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.w600,
             letterSpacing: 2,
@@ -94,10 +99,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 Expanded(
                   child: TextField(
                     focusNode: _focusNode,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                        color: isLight ? Color(0xFF60438C) : Colors.white,
+                        fontSize: 16),
                     decoration: InputDecoration(
                       hintText: 'Lorem Ipsum',
-                      hintStyle: TextStyle(color: Colors.white54, fontSize: 16),
+                      hintStyle: TextStyle(
+                          color: isLight
+                              ? Color(0xFF60438C).withValues(alpha: 0.6)
+                              : Colors.white54,
+                          fontSize: 16),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
                     ),
@@ -111,20 +122,72 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             padding: EdgeInsets.only(left: 15, bottom: 15),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                onTap: () {
-                  
-                },
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white30, width: 1.5),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isExpanded = !isExpanded;
+                      });
+                    },
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: isLight
+                            ? Color(0xFF60438C).withValues(alpha: 0.5)
+                            : Colors.white.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: isLight
+                                ? Color(0xFF60438C).withValues(alpha: 0.3)
+                                : Colors.white30,
+                            width: 1.5),
+                      ),
+                      child: Icon(isExpanded ? Icons.close : Icons.add,
+                          color: Colors.white, size: 20),
+                    ),
                   ),
-                  child: Icon(Icons.add, color: Colors.white, size: 24),
-                ),
+                  if (isExpanded) ...[
+                    SizedBox(width: 12),
+                    Container(
+                      height: 36,
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF60438C),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.image_outlined,
+                              color: Colors.white, size: 20),
+                          SizedBox(width: 16),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              'GIF',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Icon(Icons.camera_alt_outlined,
+                              color: Colors.white, size: 20),
+                          SizedBox(width: 16),
+                          Icon(Icons.attach_file,
+                              color: Colors.white, size: 20),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ),
@@ -137,7 +200,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               padding: EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                border: Border.all(color: Colors.white24, width: 1.5),
+                border: Border.all(
+                    color: isLight
+                        ? Color(0xFF60438C).withValues(alpha: 0.3)
+                        : Colors.white24,
+                    width: 1.5),
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Row(
@@ -146,11 +213,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color(0xFF07026F), Color(0xFFA01E38)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter, 
-                      ),
+                      gradient: isLight
+                          ? LinearGradient(
+                              colors: [Color(0xFF60438C), Color(0xFF9E87CE)],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            )
+                          : LinearGradient(
+                              colors: [Color(0xFF07026F), Color(0xFFA01E38)],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
@@ -182,7 +255,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       child: Text(
                         'STORY',
                         style: TextStyle(
-                          color: Colors.white70,
+                          color: isLight
+                              ? Color(0xFF60438C).withValues(alpha: 0.6)
+                              : Colors.white70,
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
